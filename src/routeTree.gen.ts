@@ -14,11 +14,20 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as BestRouteImport } from './routes/best'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as MarketsRouteImport } from './routes/markets'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as TerminalRouteImport } from './routes/terminal'
+import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as LegalPageRouteImport } from './routes/legal.$page'
+import { Route as MarketsIndexRouteImport } from './routes/markets.index'
+import { Route as MarketsSlugRouteImport } from './routes/markets.$slug'
+import { Route as TerminalIndexRouteImport } from './routes/terminal.index'
+import { Route as TerminalSlugRouteImport } from './routes/terminal.$slug'
+import { Route as ToolsIndexRouteImport } from './routes/tools.index'
+import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
 import { Route as PlatformsKindIndexRouteImport } from './routes/platforms.$kind.index'
 import { Route as PlatformsKindSlugRouteImport } from './routes/platforms.$kind.$slug'
 
@@ -47,6 +56,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MarketsRoute = MarketsRouteImport.update({
+  id: '/markets',
+  path: '/markets',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MethodologyRoute = MethodologyRouteImport.update({
   id: '/methodology',
   path: '/methodology',
@@ -55,6 +69,16 @@ const MethodologyRoute = MethodologyRouteImport.update({
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TerminalRoute = TerminalRouteImport.update({
+  id: '/terminal',
+  path: '/terminal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsRoute = ToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnIndexRoute = LearnIndexRouteImport.update({
@@ -71,6 +95,36 @@ const LegalPageRoute = LegalPageRouteImport.update({
   id: '/legal/$page',
   path: '/legal/$page',
   getParentRoute: () => rootRouteImport,
+} as any)
+const MarketsIndexRoute = MarketsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MarketsRoute,
+} as any)
+const MarketsSlugRoute = MarketsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => MarketsRoute,
+} as any)
+const TerminalIndexRoute = TerminalIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TerminalRoute,
+} as any)
+const TerminalSlugRoute = TerminalSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => TerminalRoute,
+} as any)
+const ToolsIndexRoute = ToolsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ToolsRoute,
+} as any)
+const ToolsSlugRoute = ToolsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ToolsRoute,
 } as any)
 const PlatformsKindIndexRoute = PlatformsKindIndexRouteImport.update({
   id: '/platforms/$kind/',
@@ -89,11 +143,20 @@ export interface FileRoutesByFullPath {
   '/best': typeof BestRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/markets': typeof MarketsRouteWithChildren
   '/methodology': typeof MethodologyRoute
   '/search': typeof SearchRoute
+  '/terminal': typeof TerminalRouteWithChildren
+  '/tools': typeof ToolsRouteWithChildren
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
+  '/markets/$slug': typeof MarketsSlugRoute
+  '/terminal/$slug': typeof TerminalSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
   '/learn/': typeof LearnIndexRoute
+  '/markets/': typeof MarketsIndexRoute
+  '/terminal/': typeof TerminalIndexRoute
+  '/tools/': typeof ToolsIndexRoute
   '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
   '/platforms/$kind/': typeof PlatformsKindIndexRoute
 }
@@ -107,7 +170,13 @@ export interface FileRoutesByTo {
   '/search': typeof SearchRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
+  '/markets/$slug': typeof MarketsSlugRoute
+  '/terminal/$slug': typeof TerminalSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
   '/learn': typeof LearnIndexRoute
+  '/markets': typeof MarketsIndexRoute
+  '/terminal': typeof TerminalIndexRoute
+  '/tools': typeof ToolsIndexRoute
   '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
   '/platforms/$kind': typeof PlatformsKindIndexRoute
 }
@@ -118,11 +187,20 @@ export interface FileRoutesById {
   '/best': typeof BestRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/markets': typeof MarketsRouteWithChildren
   '/methodology': typeof MethodologyRoute
   '/search': typeof SearchRoute
+  '/terminal': typeof TerminalRouteWithChildren
+  '/tools': typeof ToolsRouteWithChildren
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
+  '/markets/$slug': typeof MarketsSlugRoute
+  '/terminal/$slug': typeof TerminalSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
   '/learn/': typeof LearnIndexRoute
+  '/markets/': typeof MarketsIndexRoute
+  '/terminal/': typeof TerminalIndexRoute
+  '/tools/': typeof ToolsIndexRoute
   '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
   '/platforms/$kind/': typeof PlatformsKindIndexRoute
 }
@@ -134,11 +212,20 @@ export interface FileRouteTypes {
     | '/best'
     | '/compare'
     | '/contact'
+    | '/markets'
     | '/methodology'
     | '/search'
+    | '/terminal'
+    | '/tools'
     | '/learn/$slug'
     | '/legal/$page'
+    | '/markets/$slug'
+    | '/terminal/$slug'
+    | '/tools/$slug'
     | '/learn/'
+    | '/markets/'
+    | '/terminal/'
+    | '/tools/'
     | '/platforms/$kind/$slug'
     | '/platforms/$kind/'
   fileRoutesByTo: FileRoutesByTo
@@ -152,7 +239,13 @@ export interface FileRouteTypes {
     | '/search'
     | '/learn/$slug'
     | '/legal/$page'
+    | '/markets/$slug'
+    | '/terminal/$slug'
+    | '/tools/$slug'
     | '/learn'
+    | '/markets'
+    | '/terminal'
+    | '/tools'
     | '/platforms/$kind/$slug'
     | '/platforms/$kind'
   id:
@@ -162,11 +255,20 @@ export interface FileRouteTypes {
     | '/best'
     | '/compare'
     | '/contact'
+    | '/markets'
     | '/methodology'
     | '/search'
+    | '/terminal'
+    | '/tools'
     | '/learn/$slug'
     | '/legal/$page'
+    | '/markets/$slug'
+    | '/terminal/$slug'
+    | '/tools/$slug'
     | '/learn/'
+    | '/markets/'
+    | '/terminal/'
+    | '/tools/'
     | '/platforms/$kind/$slug'
     | '/platforms/$kind/'
   fileRoutesById: FileRoutesById
@@ -177,8 +279,11 @@ export interface RootRouteChildren {
   BestRoute: typeof BestRoute
   CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
+  MarketsRoute: typeof MarketsRouteWithChildren
   MethodologyRoute: typeof MethodologyRoute
   SearchRoute: typeof SearchRoute
+  TerminalRoute: typeof TerminalRouteWithChildren
+  ToolsRoute: typeof ToolsRouteWithChildren
   LearnSlugRoute: typeof LearnSlugRoute
   LegalPageRoute: typeof LegalPageRoute
   LearnIndexRoute: typeof LearnIndexRoute
@@ -223,6 +328,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/markets': {
+      id: '/markets'
+      path: '/markets'
+      fullPath: '/markets'
+      preLoaderRoute: typeof MarketsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/methodology': {
       id: '/methodology'
       path: '/methodology'
@@ -235,6 +347,20 @@ declare module '@tanstack/react-router' {
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terminal': {
+      id: '/terminal'
+      path: '/terminal'
+      fullPath: '/terminal'
+      preLoaderRoute: typeof TerminalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools': {
+      id: '/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof ToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn/': {
@@ -258,6 +384,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/markets/': {
+      id: '/markets/'
+      path: '/'
+      fullPath: '/markets/'
+      preLoaderRoute: typeof MarketsIndexRouteImport
+      parentRoute: typeof MarketsRoute
+    }
+    '/markets/$slug': {
+      id: '/markets/$slug'
+      path: '/$slug'
+      fullPath: '/markets/$slug'
+      preLoaderRoute: typeof MarketsSlugRouteImport
+      parentRoute: typeof MarketsRoute
+    }
+    '/terminal/': {
+      id: '/terminal/'
+      path: '/'
+      fullPath: '/terminal/'
+      preLoaderRoute: typeof TerminalIndexRouteImport
+      parentRoute: typeof TerminalRoute
+    }
+    '/terminal/$slug': {
+      id: '/terminal/$slug'
+      path: '/$slug'
+      fullPath: '/terminal/$slug'
+      preLoaderRoute: typeof TerminalSlugRouteImport
+      parentRoute: typeof TerminalRoute
+    }
+    '/tools/': {
+      id: '/tools/'
+      path: '/'
+      fullPath: '/tools/'
+      preLoaderRoute: typeof ToolsIndexRouteImport
+      parentRoute: typeof ToolsRoute
+    }
+    '/tools/$slug': {
+      id: '/tools/$slug'
+      path: '/$slug'
+      fullPath: '/tools/$slug'
+      preLoaderRoute: typeof ToolsSlugRouteImport
+      parentRoute: typeof ToolsRoute
+    }
     '/platforms/$kind/': {
       id: '/platforms/$kind/'
       path: '/platforms/$kind'
@@ -275,14 +443,56 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface MarketsRouteChildren {
+  MarketsSlugRoute: typeof MarketsSlugRoute
+  MarketsIndexRoute: typeof MarketsIndexRoute
+}
+
+const MarketsRouteChildren: MarketsRouteChildren = {
+  MarketsSlugRoute: MarketsSlugRoute,
+  MarketsIndexRoute: MarketsIndexRoute,
+}
+
+const MarketsRouteWithChildren =
+  MarketsRoute._addFileChildren(MarketsRouteChildren)
+
+interface TerminalRouteChildren {
+  TerminalSlugRoute: typeof TerminalSlugRoute
+  TerminalIndexRoute: typeof TerminalIndexRoute
+}
+
+const TerminalRouteChildren: TerminalRouteChildren = {
+  TerminalSlugRoute: TerminalSlugRoute,
+  TerminalIndexRoute: TerminalIndexRoute,
+}
+
+const TerminalRouteWithChildren = TerminalRoute._addFileChildren(
+  TerminalRouteChildren,
+)
+
+interface ToolsRouteChildren {
+  ToolsSlugRoute: typeof ToolsSlugRoute
+  ToolsIndexRoute: typeof ToolsIndexRoute
+}
+
+const ToolsRouteChildren: ToolsRouteChildren = {
+  ToolsSlugRoute: ToolsSlugRoute,
+  ToolsIndexRoute: ToolsIndexRoute,
+}
+
+const ToolsRouteWithChildren = ToolsRoute._addFileChildren(ToolsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BestRoute: BestRoute,
   CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
+  MarketsRoute: MarketsRouteWithChildren,
   MethodologyRoute: MethodologyRoute,
   SearchRoute: SearchRoute,
+  TerminalRoute: TerminalRouteWithChildren,
+  ToolsRoute: ToolsRouteWithChildren,
   LearnSlugRoute: LearnSlugRoute,
   LegalPageRoute: LegalPageRoute,
   LearnIndexRoute: LearnIndexRoute,
