@@ -37,6 +37,7 @@ import { Route as AccountIndexRouteImport } from './routes/account.index'
 import { Route as AccountPageRouteImport } from './routes/account.$page'
 import { Route as AlertsIndexRouteImport } from './routes/alerts.index'
 import { Route as AlertsReportRouteImport } from './routes/alerts.report'
+import { Route as BestListRouteImport } from './routes/best_.$list'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as LegalPageRouteImport } from './routes/legal.$page'
@@ -50,6 +51,7 @@ import { Route as ToolsIndexRouteImport } from './routes/tools.index'
 import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
 import { Route as PlatformsKindIndexRouteImport } from './routes/platforms.$kind.index'
 import { Route as PlatformsKindSlugRouteImport } from './routes/platforms.$kind.$slug'
+import { Route as PlatformsKindRegionRegionRouteImport } from './routes/platforms.$kind_.region.$region'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -191,6 +193,11 @@ const AlertsReportRoute = AlertsReportRouteImport.update({
   path: '/report',
   getParentRoute: () => AlertsRoute,
 } as any)
+const BestListRoute = BestListRouteImport.update({
+  id: '/best_/$list',
+  path: '/best/$list',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LearnIndexRoute = LearnIndexRouteImport.update({
   id: '/learn/',
   path: '/learn/',
@@ -256,6 +263,12 @@ const PlatformsKindSlugRoute = PlatformsKindSlugRouteImport.update({
   path: '/platforms/$kind/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlatformsKindRegionRegionRoute =
+  PlatformsKindRegionRegionRouteImport.update({
+    id: '/platforms/$kind_/region/$region',
+    path: '/platforms/$kind/region/$region',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -284,6 +297,7 @@ export interface FileRoutesByFullPath {
   '/about/team': typeof AboutTeamRoute
   '/account/$page': typeof AccountPageRoute
   '/alerts/report': typeof AlertsReportRoute
+  '/best/$list': typeof BestListRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
   '/markets/$slug': typeof MarketsSlugRoute
@@ -299,6 +313,7 @@ export interface FileRoutesByFullPath {
   '/tools/': typeof ToolsIndexRoute
   '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
   '/platforms/$kind/': typeof PlatformsKindIndexRoute
+  '/platforms/$kind/region/$region': typeof PlatformsKindRegionRegionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -322,6 +337,7 @@ export interface FileRoutesByTo {
   '/about/team': typeof AboutTeamRoute
   '/account/$page': typeof AccountPageRoute
   '/alerts/report': typeof AlertsReportRoute
+  '/best/$list': typeof BestListRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
   '/markets/$slug': typeof MarketsSlugRoute
@@ -337,6 +353,7 @@ export interface FileRoutesByTo {
   '/tools': typeof ToolsIndexRoute
   '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
   '/platforms/$kind': typeof PlatformsKindIndexRoute
+  '/platforms/$kind/region/$region': typeof PlatformsKindRegionRegionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -366,6 +383,7 @@ export interface FileRoutesById {
   '/about_/team': typeof AboutTeamRoute
   '/account/$page': typeof AccountPageRoute
   '/alerts/report': typeof AlertsReportRoute
+  '/best_/$list': typeof BestListRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
   '/markets/$slug': typeof MarketsSlugRoute
@@ -381,6 +399,7 @@ export interface FileRoutesById {
   '/tools/': typeof ToolsIndexRoute
   '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
   '/platforms/$kind/': typeof PlatformsKindIndexRoute
+  '/platforms/$kind_/region/$region': typeof PlatformsKindRegionRegionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -411,6 +430,7 @@ export interface FileRouteTypes {
     | '/about/team'
     | '/account/$page'
     | '/alerts/report'
+    | '/best/$list'
     | '/learn/$slug'
     | '/legal/$page'
     | '/markets/$slug'
@@ -426,6 +446,7 @@ export interface FileRouteTypes {
     | '/tools/'
     | '/platforms/$kind/$slug'
     | '/platforms/$kind/'
+    | '/platforms/$kind/region/$region'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -449,6 +470,7 @@ export interface FileRouteTypes {
     | '/about/team'
     | '/account/$page'
     | '/alerts/report'
+    | '/best/$list'
     | '/learn/$slug'
     | '/legal/$page'
     | '/markets/$slug'
@@ -464,6 +486,7 @@ export interface FileRouteTypes {
     | '/tools'
     | '/platforms/$kind/$slug'
     | '/platforms/$kind'
+    | '/platforms/$kind/region/$region'
   id:
     | '__root__'
     | '/'
@@ -492,6 +515,7 @@ export interface FileRouteTypes {
     | '/about_/team'
     | '/account/$page'
     | '/alerts/report'
+    | '/best_/$list'
     | '/learn/$slug'
     | '/legal/$page'
     | '/markets/$slug'
@@ -507,6 +531,7 @@ export interface FileRouteTypes {
     | '/tools/'
     | '/platforms/$kind/$slug'
     | '/platforms/$kind/'
+    | '/platforms/$kind_/region/$region'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -534,6 +559,7 @@ export interface RootRouteChildren {
   TerminalRoute: typeof TerminalRouteWithChildren
   ToolsRoute: typeof ToolsRouteWithChildren
   AboutTeamRoute: typeof AboutTeamRoute
+  BestListRoute: typeof BestListRoute
   LearnSlugRoute: typeof LearnSlugRoute
   LegalPageRoute: typeof LegalPageRoute
   MembershipPageRoute: typeof MembershipPageRoute
@@ -541,6 +567,7 @@ export interface RootRouteChildren {
   LearnIndexRoute: typeof LearnIndexRoute
   PlatformsKindSlugRoute: typeof PlatformsKindSlugRoute
   PlatformsKindIndexRoute: typeof PlatformsKindIndexRoute
+  PlatformsKindRegionRegionRoute: typeof PlatformsKindRegionRegionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -741,6 +768,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AlertsReportRouteImport
       parentRoute: typeof AlertsRoute
     }
+    '/best_/$list': {
+      id: '/best_/$list'
+      path: '/best/$list'
+      fullPath: '/best/$list'
+      preLoaderRoute: typeof BestListRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learn/': {
       id: '/learn/'
       path: '/learn'
@@ -830,6 +864,13 @@ declare module '@tanstack/react-router' {
       path: '/platforms/$kind/$slug'
       fullPath: '/platforms/$kind/$slug'
       preLoaderRoute: typeof PlatformsKindSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platforms/$kind_/region/$region': {
+      id: '/platforms/$kind_/region/$region'
+      path: '/platforms/$kind/region/$region'
+      fullPath: '/platforms/$kind/region/$region'
+      preLoaderRoute: typeof PlatformsKindRegionRegionRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -925,6 +966,7 @@ const rootRouteChildren: RootRouteChildren = {
   TerminalRoute: TerminalRouteWithChildren,
   ToolsRoute: ToolsRouteWithChildren,
   AboutTeamRoute: AboutTeamRoute,
+  BestListRoute: BestListRoute,
   LearnSlugRoute: LearnSlugRoute,
   LegalPageRoute: LegalPageRoute,
   MembershipPageRoute: MembershipPageRoute,
@@ -932,6 +974,7 @@ const rootRouteChildren: RootRouteChildren = {
   LearnIndexRoute: LearnIndexRoute,
   PlatformsKindSlugRoute: PlatformsKindSlugRoute,
   PlatformsKindIndexRoute: PlatformsKindIndexRoute,
+  PlatformsKindRegionRegionRoute: PlatformsKindRegionRegionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
