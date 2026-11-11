@@ -2,19 +2,20 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Search, Menu, X, ChevronLeft, ChevronDown } from "lucide-react";
 import logo from "@/assets/niktrust-logotype.svg.asset.json";
+import { Button } from "@/components/ui/button";
 
 type L = { label: string; to: string; params?: Record<string, string> };
 const MENUS: { title: string; intro: string; links: L[] }[] = [
   { title: "پلتفرم‌ها", intro: "بروکر، صرافی و پراپ‌فرم را با معیارهای منتشرشده ببینید.", links: [
     { label: "بروکرهای فارکس", to: "/platforms/$kind", params: { kind: "broker" } },
     { label: "صرافی‌های ارز دیجیتال", to: "/platforms/$kind", params: { kind: "exchange" } },
-    { label: "پراپ‌فرم‌ها", to: "/platforms/$kind", params: { kind: "prop" } } ] },
+     { label: "پراپ‌فرم‌ها", to: "/platforms/$kind", params: { kind: "prop" } }, { label: "استعلام پلتفرم", to: "/check" }, { label: "هشدارها و تغییرات", to: "/alerts" }, { label: "گزارش مشکل", to: "/alerts/report" } ] },
   { title: "بهترین‌ها", intro: "امتیاز بالاتر به معنای مناسب بودن برای همه نیست.", links: [{ label: "همهٔ فهرست‌های برتر", to: "/best" }] },
-  { title: "مقایسه و ابزارها", intro: "۲ تا ۴ پلتفرم هم‌نوع را کنار هم ببینید.", links: [{ label: "مقایسهٔ پلتفرم‌ها", to: "/compare" }, { label: "جستجو", to: "/search" }] },
-  { title: "آموزش و اخبار", intro: "از مفاهیم پایه تا نکات حرفه‌ای.", links: [{ label: "همهٔ مقالات", to: "/learn" }] },
+   { title: "مقایسه و ابزارها", intro: "مقایسه، محاسبه و تحلیل با معیارهای شفاف.", links: [{ label: "مقایسهٔ پلتفرم‌ها", to: "/compare" }, { label: "انتخاب هدایت‌شده", to: "/finder" }, { label: "ماشین‌حساب‌های مالی", to: "/tools" }, { label: "نبض بازار", to: "/markets" }, { label: "ترمینال تحلیلی", to: "/terminal" }, { label: "جستجو", to: "/search" }] },
+   { title: "آموزش و اخبار", intro: "از مفاهیم پایه تا نکات حرفه‌ای.", links: [{ label: "مرکز آموزش", to: "/learn" }, { label: "مجلهٔ نیک‌تراست", to: "/blog" }, { label: "اخبار و تحلیل", to: "/news" }, { label: "واژه‌نامهٔ مالی", to: "/glossary" }, { label: "پرسش‌های متداول", to: "/faq" }] },
   { title: "دربارهٔ نیک‌تراست", intro: "چه کسی هستیم و چگونه ارزیابی می‌کنیم.", links: [
     { label: "دربارهٔ ما", to: "/about" }, { label: "روش ارزیابی", to: "/methodology" },
-    { label: "افشای همکاری", to: "/legal/$page", params: { page: "disclosure" } }, { label: "تماس", to: "/contact" } ] },
+     { label: "افشای همکاری", to: "/legal/$page", params: { page: "disclosure" } }, { label: "سیاست تحریریه", to: "/editorial-policy" }, { label: "سیاست اصلاحات", to: "/corrections" }, { label: "مدل درآمد", to: "/how-we-make-money" }, { label: "تیم و بررسی‌کنندگان", to: "/about/team" }, { label: "برنامهٔ همکاری", to: "/partners" }, { label: "عضویت", to: "/membership" }, { label: "حساب کاربری", to: "/account" }, { label: "تماس", to: "/contact" } ] },
 ];
 
 export function Header() {
@@ -27,14 +28,14 @@ export function Header() {
         <Link to="/" aria-label="نیک‌تراست"><img src={logo.url} alt="نیک‌تراست" className="h-8 w-auto" /></Link>
         <nav className="hidden flex-1 items-center gap-1 lg:flex">
           {MENUS.map((m, i) => (
-            <button key={m.title} aria-expanded={menu === i} onMouseEnter={() => setMenu(i)} onClick={() => setMenu(menu === i ? null : i)}
-              className="flex items-center gap-1 rounded-lg px-3 py-2 text-[15px] font-medium hover:bg-accent">{m.title}<ChevronDown className="size-3.5 text-muted-foreground" /></button>
+             <Button variant="ghost" key={m.title} aria-expanded={menu === i} onMouseEnter={() => setMenu(i)} onClick={() => setMenu(menu === i ? null : i)}
+               className="gap-1 px-3 text-[15px] font-medium">{m.title}<ChevronDown className="size-3.5 text-muted-foreground" /></Button>
           ))}
         </nav>
         <div className="ms-auto flex items-center gap-2">
           <Link to="/search" aria-label="جستجو" className="rounded-lg p-2 text-muted-foreground hover:bg-accent"><Search className="size-5" /></Link>
-          <Link to="/compare" className="hidden rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 sm:inline-flex">پیدا کردن پلتفرم مناسب</Link>
-          <button aria-label="منو" aria-expanded={open} onClick={() => setOpen(!open)} className="rounded-lg p-2 lg:hidden">{open ? <X className="size-5" /> : <Menu className="size-5" />}</button>
+           <Button asChild className="hidden sm:inline-flex"><Link to="/finder">پیدا کردن پلتفرم مناسب</Link></Button>
+           <Button variant="ghost" size="icon" aria-label="منو" aria-expanded={open} onClick={() => setOpen(!open)} className="lg:hidden">{open ? <X className="size-5" /> : <Menu className="size-5" />}</Button>
         </div>
         {active && (
           <div className="absolute inset-x-4 top-full mt-2 hidden grid-cols-12 overflow-hidden rounded-xl border border-border bg-card animate-in fade-in slide-in-from-top-1 lg:grid">
@@ -49,7 +50,7 @@ export function Header() {
       </div>
       {open && (
         <div className="max-h-[80vh] overflow-y-auto border-t border-border bg-card px-4 pb-4 lg:hidden">
-          <Link to="/compare" onClick={() => setOpen(false)} className="my-3 flex h-12 items-center justify-center rounded-lg bg-primary font-semibold text-primary-foreground">پیدا کردن پلتفرم مناسب</Link>
+           <Button asChild className="my-3 flex h-12"><Link to="/finder" onClick={() => setOpen(false)}>پیدا کردن پلتفرم مناسب</Link></Button>
           {MENUS.map((m) => (
             <details key={m.title} className="border-b border-border">
               <summary className="flex h-[52px] cursor-pointer list-none items-center justify-between font-medium">{m.title}<ChevronLeft className="size-4 text-muted-foreground" /></summary>

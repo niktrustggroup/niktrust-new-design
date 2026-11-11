@@ -7,6 +7,11 @@ import {
 import { Link, useNavigate } from "@tanstack/react-router";
 import { KINDS, byKind, ARTICLES, type Kind } from "@/lib/data";
 import { PlatformRow } from "@/components/site/ui";
+import { Calculator } from "@/components/site/Calculator";
+import { MarketPulse } from "@/components/site/MarketPulse";
+import { PlatformFinder } from "@/components/site/PlatformFinder";
+import { Button } from "@/components/ui/button";
+import { Star, Bell, UserRound } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -47,7 +52,7 @@ function Index() {
             <form onSubmit={(e) => { e.preventDefault(); const q = new FormData(e.currentTarget).get("q") as string; nav({ to: "/search", search: { q: q || undefined } }); }} className="mt-3 flex flex-col gap-3 sm:flex-row">
               <label className="flex h-12 flex-1 items-center gap-2 rounded-xl border border-input bg-card px-4 focus-within:ring-2 focus-within:ring-ring">
                 <Search className="size-5 text-muted-foreground" />
-                <input name="q" className="w-full bg-transparent outline-none placeholder:text-muted-foreground" placeholder={`نام ${KINDS.find((k) => k.id === heroKind)!.label} را جستجو کنید…`} />
+                <input name="q" className="w-full bg-transparent outline-none placeholder:text-muted-foreground" placeholder={`نام ${KINDS.find((k) => k.id === heroKind)?.label ?? "پلتفرم"} را جستجو کنید…`} />
               </label>
               <button type="button" onClick={() => nav({ to: "/platforms/$kind", params: { kind: heroKind } })} className="h-12 rounded-xl bg-primary px-6 font-semibold text-primary-foreground hover:bg-primary/90">مقایسه پلتفرم‌ها</button>
             </form>
@@ -67,14 +72,19 @@ function Index() {
           {[
             { i: Sprout, to: "/learn", t: "تازه‌کارم", d: "از کجا شروع کنم و به چه چیزی اعتماد کنم؟" },
             { i: Scale, to: "/compare", t: "می‌خواهم مقایسه کنم", d: "۲ تا ۴ پلتفرم هم‌نوع را کنار هم ببینید." },
-            { i: FileSearch, to: "/search", t: "پلتفرم خاصی را بررسی کنم", d: "خلاصهٔ تصمیم، مزایا، معایب و داده‌ها." },
+            { i: FileSearch, to: "/check", t: "پلتفرم خاصی را بررسی کنم", d: "خلاصهٔ تصمیم، مزایا، معایب و داده‌ها." },
           ].map(({ i: I, to, t, d }) => (
-            <Link key={t} to={to as "/learn"} className="group flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary">
+            <Link key={t} to={to} className="group flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary">
               <span className="grid size-12 shrink-0 place-items-center rounded-lg bg-tint text-primary"><I className="size-6" /></span>
               <span className="flex-1"><span className="block font-bold">{t}</span><span className="text-sm text-muted-foreground">{d}</span></span>
               <ChevronLeft className="size-5 text-muted-foreground transition-transform group-hover:-translate-x-1" />
             </Link>
           ))}
+        </section>
+
+        <section className="mt-16">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-3"><h2 className="text-2xl font-extrabold text-brand-deep md:text-3xl">پلتفرم مناسب خود را پیدا کنید</h2><Link to="/finder" className="text-sm font-semibold text-primary">انتخاب هدایت‌شده ←</Link></div>
+          <PlatformFinder />
         </section>
 
         {/* S3 Top rated */}
@@ -146,10 +156,28 @@ function Index() {
 
         {/* S7 Learn */}
         <section className="mt-16">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-3"><h2 className="text-2xl font-extrabold text-brand-deep md:text-3xl">نبض بازار</h2><Link to="/markets" className="text-sm font-semibold text-primary">نمای کامل بازار ←</Link></div>
+          <MarketPulse />
+        </section>
+        <section className="mt-16">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-3"><h2 className="text-2xl font-extrabold text-brand-deep md:text-3xl">ابزارها و ماشین‌حساب‌های مالی</h2><Link to="/tools" className="text-sm font-semibold text-primary">همهٔ ابزارها ←</Link></div>
+          <Calculator compact />
+        </section>
+        <section className="mt-16 border-y border-border py-8">
+          <div className="flex flex-wrap items-end justify-between gap-3"><h2 className="text-2xl font-extrabold text-brand-deep">آخرین تغییرات پلتفرم‌ها</h2><Link to="/alerts" className="text-sm font-semibold text-primary">مرکز هشدارها و تغییرات ←</Link></div>
+          <p className="mt-5 text-sm leading-7 text-muted-foreground">تغییر تأییدشده‌ای منتشر نشده است. نبودن هشدار به معنی امنیت پلتفرم نیست.</p>
+          <div className="mt-4 flex flex-wrap gap-2"><Button asChild variant="outline"><Link to="/alerts/report">گزارش تغییر یا مشکل</Link></Button><Button asChild variant="ghost"><Link to="/corrections">سیاست اصلاحات</Link></Button></div>
+        </section>
+        <section className="mt-16">
+          <h2 className="text-2xl font-extrabold text-brand-deep">پیگیری شخصی</h2><p className="mt-2 text-sm text-muted-foreground">حساب، ذخیرهٔ دائمی و ارسال اعلان هنوز فعال نیستند.</p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[{p:'watchlist',t:'پلتفرم‌های ذخیره‌شده',i:Star},{p:'saved',t:'مقایسه‌های ذخیره‌شده',i:Scale},{p:'notifications',t:'اعلان تغییرات',i:Bell},{p:'profile',t:'حساب کاربری',i:UserRound}].map(({p,t,i:I})=><Link key={p} to="/account/$page" params={{page:p}} className="flex items-center gap-3 rounded-lg border border-border bg-card p-4"><I className="size-5 text-primary"/><span className="flex-1 text-sm font-semibold">{t}</span><span className="text-xs text-muted-foreground">غیرفعال</span></Link>)}</div>
+        </section>
+        <section className="mt-16">
           <div className="flex items-end justify-between">
             <h2 className="text-2xl font-extrabold text-brand-deep md:text-3xl">آموزش</h2>
-            <Link to="/learn" className="text-sm font-semibold text-primary">واژه‌نامه</Link>
+            <Link to="/glossary" className="text-sm font-semibold text-primary">واژه‌نامه</Link>
           </div>
+          <div className="mt-5 flex flex-wrap gap-3"><Button asChild variant="outline"><Link to="/blog">مجلهٔ نیک‌تراست</Link></Button><Button asChild variant="outline"><Link to="/news">اخبار و تحلیل</Link></Button></div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {ARTICLES.slice(0, 3).map((a) => (
               <Link key={a.slug} to="/learn/$slug" params={{ slug: a.slug }} className="rounded-xl border border-border bg-card p-5 hover:border-primary">
