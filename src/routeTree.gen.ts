@@ -11,14 +11,19 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as BestRouteImport } from './routes/best'
+import { Route as CheckRouteImport } from './routes/check'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FinderRouteImport } from './routes/finder'
 import { Route as MarketsRouteImport } from './routes/markets'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as TerminalRouteImport } from './routes/terminal'
 import { Route as ToolsRouteImport } from './routes/tools'
+import { Route as AlertsIndexRouteImport } from './routes/alerts.index'
+import { Route as AlertsReportRouteImport } from './routes/alerts.report'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as LegalPageRouteImport } from './routes/legal.$page'
@@ -41,9 +46,19 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlertsRoute = AlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BestRoute = BestRouteImport.update({
   id: '/best',
   path: '/best',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckRoute = CheckRouteImport.update({
+  id: '/check',
+  path: '/check',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompareRoute = CompareRouteImport.update({
@@ -54,6 +69,11 @@ const CompareRoute = CompareRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinderRoute = FinderRouteImport.update({
+  id: '/finder',
+  path: '/finder',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MarketsRoute = MarketsRouteImport.update({
@@ -80,6 +100,16 @@ const ToolsRoute = ToolsRouteImport.update({
   id: '/tools',
   path: '/tools',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AlertsIndexRoute = AlertsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AlertsRoute,
+} as any)
+const AlertsReportRoute = AlertsReportRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => AlertsRoute,
 } as any)
 const LearnIndexRoute = LearnIndexRouteImport.update({
   id: '/learn/',
@@ -140,19 +170,24 @@ const PlatformsKindSlugRoute = PlatformsKindSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/alerts': typeof AlertsRouteWithChildren
   '/best': typeof BestRoute
+  '/check': typeof CheckRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/finder': typeof FinderRoute
   '/markets': typeof MarketsRouteWithChildren
   '/methodology': typeof MethodologyRoute
   '/search': typeof SearchRoute
   '/terminal': typeof TerminalRouteWithChildren
   '/tools': typeof ToolsRouteWithChildren
+  '/alerts/report': typeof AlertsReportRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
   '/markets/$slug': typeof MarketsSlugRoute
   '/terminal/$slug': typeof TerminalSlugRoute
   '/tools/$slug': typeof ToolsSlugRoute
+  '/alerts/': typeof AlertsIndexRoute
   '/learn/': typeof LearnIndexRoute
   '/markets/': typeof MarketsIndexRoute
   '/terminal/': typeof TerminalIndexRoute
@@ -164,15 +199,19 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/best': typeof BestRoute
+  '/check': typeof CheckRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/finder': typeof FinderRoute
   '/methodology': typeof MethodologyRoute
   '/search': typeof SearchRoute
+  '/alerts/report': typeof AlertsReportRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
   '/markets/$slug': typeof MarketsSlugRoute
   '/terminal/$slug': typeof TerminalSlugRoute
   '/tools/$slug': typeof ToolsSlugRoute
+  '/alerts': typeof AlertsIndexRoute
   '/learn': typeof LearnIndexRoute
   '/markets': typeof MarketsIndexRoute
   '/terminal': typeof TerminalIndexRoute
@@ -184,19 +223,24 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/alerts': typeof AlertsRouteWithChildren
   '/best': typeof BestRoute
+  '/check': typeof CheckRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/finder': typeof FinderRoute
   '/markets': typeof MarketsRouteWithChildren
   '/methodology': typeof MethodologyRoute
   '/search': typeof SearchRoute
   '/terminal': typeof TerminalRouteWithChildren
   '/tools': typeof ToolsRouteWithChildren
+  '/alerts/report': typeof AlertsReportRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
   '/markets/$slug': typeof MarketsSlugRoute
   '/terminal/$slug': typeof TerminalSlugRoute
   '/tools/$slug': typeof ToolsSlugRoute
+  '/alerts/': typeof AlertsIndexRoute
   '/learn/': typeof LearnIndexRoute
   '/markets/': typeof MarketsIndexRoute
   '/terminal/': typeof TerminalIndexRoute
@@ -209,19 +253,24 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/alerts'
     | '/best'
+    | '/check'
     | '/compare'
     | '/contact'
+    | '/finder'
     | '/markets'
     | '/methodology'
     | '/search'
     | '/terminal'
     | '/tools'
+    | '/alerts/report'
     | '/learn/$slug'
     | '/legal/$page'
     | '/markets/$slug'
     | '/terminal/$slug'
     | '/tools/$slug'
+    | '/alerts/'
     | '/learn/'
     | '/markets/'
     | '/terminal/'
@@ -233,15 +282,19 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/best'
+    | '/check'
     | '/compare'
     | '/contact'
+    | '/finder'
     | '/methodology'
     | '/search'
+    | '/alerts/report'
     | '/learn/$slug'
     | '/legal/$page'
     | '/markets/$slug'
     | '/terminal/$slug'
     | '/tools/$slug'
+    | '/alerts'
     | '/learn'
     | '/markets'
     | '/terminal'
@@ -252,19 +305,24 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/alerts'
     | '/best'
+    | '/check'
     | '/compare'
     | '/contact'
+    | '/finder'
     | '/markets'
     | '/methodology'
     | '/search'
     | '/terminal'
     | '/tools'
+    | '/alerts/report'
     | '/learn/$slug'
     | '/legal/$page'
     | '/markets/$slug'
     | '/terminal/$slug'
     | '/tools/$slug'
+    | '/alerts/'
     | '/learn/'
     | '/markets/'
     | '/terminal/'
@@ -276,9 +334,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AlertsRoute: typeof AlertsRouteWithChildren
   BestRoute: typeof BestRoute
+  CheckRoute: typeof CheckRoute
   CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
+  FinderRoute: typeof FinderRoute
   MarketsRoute: typeof MarketsRouteWithChildren
   MethodologyRoute: typeof MethodologyRoute
   SearchRoute: typeof SearchRoute
@@ -307,11 +368,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/alerts': {
+      id: '/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/best': {
       id: '/best'
       path: '/best'
       fullPath: '/best'
       preLoaderRoute: typeof BestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/check': {
+      id: '/check'
+      path: '/check'
+      fullPath: '/check'
+      preLoaderRoute: typeof CheckRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/compare': {
@@ -326,6 +401,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finder': {
+      id: '/finder'
+      path: '/finder'
+      fullPath: '/finder'
+      preLoaderRoute: typeof FinderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/markets': {
@@ -362,6 +444,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/tools'
       preLoaderRoute: typeof ToolsRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/alerts/': {
+      id: '/alerts/'
+      path: '/'
+      fullPath: '/alerts/'
+      preLoaderRoute: typeof AlertsIndexRouteImport
+      parentRoute: typeof AlertsRoute
+    }
+    '/alerts/report': {
+      id: '/alerts/report'
+      path: '/report'
+      fullPath: '/alerts/report'
+      preLoaderRoute: typeof AlertsReportRouteImport
+      parentRoute: typeof AlertsRoute
     }
     '/learn/': {
       id: '/learn/'
@@ -443,6 +539,19 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AlertsRouteChildren {
+  AlertsReportRoute: typeof AlertsReportRoute
+  AlertsIndexRoute: typeof AlertsIndexRoute
+}
+
+const AlertsRouteChildren: AlertsRouteChildren = {
+  AlertsReportRoute: AlertsReportRoute,
+  AlertsIndexRoute: AlertsIndexRoute,
+}
+
+const AlertsRouteWithChildren =
+  AlertsRoute._addFileChildren(AlertsRouteChildren)
+
 interface MarketsRouteChildren {
   MarketsSlugRoute: typeof MarketsSlugRoute
   MarketsIndexRoute: typeof MarketsIndexRoute
@@ -485,9 +594,12 @@ const ToolsRouteWithChildren = ToolsRoute._addFileChildren(ToolsRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AlertsRoute: AlertsRouteWithChildren,
   BestRoute: BestRoute,
+  CheckRoute: CheckRoute,
   CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
+  FinderRoute: FinderRoute,
   MarketsRoute: MarketsRouteWithChildren,
   MethodologyRoute: MethodologyRoute,
   SearchRoute: SearchRoute,

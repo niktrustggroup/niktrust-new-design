@@ -1,0 +1,6 @@
+import {Link} from '@tanstack/react-router';
+import {UserRound} from 'lucide-react';
+import {Page} from '@/components/site/ui';
+import {Button} from '@/components/ui/button';
+export const ACCOUNT_PAGES:Record<string,string>={profile:'پروفایل',saved:'مقایسه‌های ذخیره‌شده',watchlist:'پلتفرم‌های ذخیره‌شده',notifications:'اعلان‌ها',settings:'تنظیمات',membership:'عضویت',reviews:'تجربه‌های من'};
+export function AccountPage({page}:{page?:string}){return <Page title={page?ACCOUNT_PAGES[page]:'حساب کاربری'} lead="حساب، ذخیره‌سازی و اعلان شخصی هنوز فعال نیستند."><nav className="flex flex-wrap gap-2" aria-label="حساب کاربری"><Button asChild variant={!page?'default':'outline'}><Link to="/account">نمای کلی</Link></Button>{Object.entries(ACCOUNT_PAGES).map(([key,title])=><Button key={key} asChild variant={page===key?'default':'outline'}><Link to="/account/$page" params={{page:key}}>{title}</Link></Button>)}</nav><div className="mt-8 border-y border-border py-10"><UserRound className="mb-4 size-8 text-primary"/><h2 className="text-xl font-bold">سرویس حساب کاربری متصل نیست</h2><p className="mt-3 max-w-2xl text-sm leading-8 text-muted-foreground">ورود، ذخیرهٔ دائمی، ارسال اعلان و ثبت تجربه انجام نمی‌شود. اطلاعات عمومی پلتفرم‌ها بدون عضویت در دسترس می‌ماند.</p></div></Page>}

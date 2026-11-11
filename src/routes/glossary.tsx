@@ -1,0 +1,7 @@
+import {useState} from 'react';
+import {createFileRoute} from '@tanstack/react-router';
+import {Page,meta} from '@/components/site/ui';
+import {Button} from '@/components/ui/button';
+import {GLOSSARY} from '@/lib/data';
+export const Route=createFileRoute('/glossary')({head:()=>meta('واژه‌نامهٔ مالی','جستجو و فیلتر الفبایی اصطلاحات مالی، فارکس، صرافی و پراپ‌فرم.'),component:Glossary});
+function Glossary(){const [q,setQ]=useState('');const [letter,setLetter]=useState('همه');const words=GLOSSARY.filter(([t,d])=>`${t} ${d}`.includes(q)&&(letter==='همه'||t.startsWith(letter)));return <Page title="واژه‌نامهٔ مالی" lead="تعریف سادهٔ اصطلاحات مالی."><label className="block max-w-xl text-sm">جستجو در واژه‌نامه<input aria-label="جستجو در واژه‌نامه" value={q} onChange={e=>setQ(e.target.value)} className="mt-2 h-11 w-full rounded-md border border-input bg-card px-3"/></label><div className="mt-5 flex flex-wrap gap-1">{['همه',...'آابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی'].map(l=><Button key={l} variant={letter===l?'default':'ghost'} size="sm" aria-pressed={letter===l} onClick={()=>setLetter(l)}>{l}</Button>)}</div><dl className="mt-6 max-w-3xl divide-y divide-border">{words.map(([t,d])=><div key={t} className="grid gap-3 py-5 sm:grid-cols-[12rem_1fr]"><dt className="font-bold">{t}</dt><dd className="text-sm leading-7 text-muted-foreground">{d}</dd></div>)}</dl>{!words.length&&<p className="py-10 text-sm text-muted-foreground">واژه‌ای پیدا نشد.</p>}</Page>}
