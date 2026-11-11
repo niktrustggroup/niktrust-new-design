@@ -2,4 +2,4 @@ import {createFileRoute} from '@tanstack/react-router';
 import {meta} from '@/components/site/ui';
 import {InfoPage} from '@/components/site/InfoPage';
 import {INFO_PAGES} from '@/lib/content';
-export const Route=createFileRoute('/how-we-make-money')({head:()=>meta(INFO_PAGES['how-we-make-money'].title,INFO_PAGES['how-we-make-money'].lead),component:()=> <InfoPage page="how-we-make-money"/>});
+export const Route=createFileRoute('/how-we-make-money')({head:()=>meta(INFO_PAGES['how-we-make-money']?.title??'شفافیت نیک‌تراست',INFO_PAGES['how-we-make-money']?.lead??'اطلاعات شفاف نیک‌تراست'),component:()=> <InfoPage page="how-we-make-money"/>});

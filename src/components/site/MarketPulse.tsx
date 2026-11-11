@@ -27,6 +27,7 @@ export function MarketPulse() {
  const [category,setCategory]=useState('crypto'); const [slug,setSlug]=useState('btcusd');
  const instrument=instrumentBySlug(slug)??INSTRUMENTS[3];
  const choose=(cat:string)=>{setCategory(cat); const first=INSTRUMENTS.find(x=>x.category===cat); if(first)setSlug(first.slug);};
+ if (!instrument) return null;
  return <div>
   <div className="mb-4 flex flex-wrap items-center justify-between gap-4"><div role="tablist" aria-label="بازار">{MARKET_CATEGORIES.filter(x=>x.id!=='all').map(c=><Button key={c.id} role="tab" aria-selected={category===c.id} variant={category===c.id?'default':'ghost'} onClick={()=>choose(c.id)}>{c.label}</Button>)}</div><label className="flex items-center gap-2 text-sm">نماد<select aria-label="نماد نمودار" value={slug} onChange={e=>{setSlug(e.target.value);setCategory(instrumentBySlug(e.target.value)?.category??'crypto');}} className="h-10 max-w-52 rounded-md border border-input bg-card px-3">{INSTRUMENTS.map(x=><option key={x.slug} value={x.slug}>{x.name}</option>)}</select></label></div>
   <TradingChart symbol={instrument.symbol}/><MarketAttribution />
@@ -48,6 +49,7 @@ export function MarketDirectory({ category='all' }: {category?:string}){
 export function MarketTerminal({slug,watchlistOnly=false}:{slug:string;watchlistOnly?:boolean}){
  const [selected,setSelected]=useState(instrumentBySlug(slug)?.slug??'eurusd'); const [interval,setInterval]=useState('D'); const [style,setStyle]=useState('1'); const [study,setStudy]=useState(''); const [drawings,setDrawings]=useState(true); const [watchlist,setWatchlist]=useState<string[]>([]);
  const x=instrumentBySlug(selected)??INSTRUMENTS[0];
+ if (!x) return null;
  const toggle=(s:string)=>setWatchlist(prev=>prev.includes(s)?prev.filter(k=>k!==s):[...prev,s]);
  return <>
   <div className="mb-6 flex flex-wrap gap-2"><Button asChild variant="outline"><Link to="/markets">مرکز بازار</Link></Button><Button variant="outline" onClick={()=>toggle(selected)}><Star className={watchlist.includes(selected)?'fill-primary text-primary':''}/>{watchlist.includes(selected)?'حذف از واچ‌لیست':'افزودن نماد فعلی'}</Button></div>

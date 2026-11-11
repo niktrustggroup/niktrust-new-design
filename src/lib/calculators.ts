@@ -10,13 +10,13 @@ export type ToolSlug = (typeof TOOLS)[number]['slug'];
 export function calculate(slug: ToolSlug, v: Record<string, number>): number | null {
   if (Object.values(v).some(x => !Number.isFinite(x))) return null;
   const required = TOOLS.find(t => t.slug === slug)?.fields ?? [];
-  if (required.some(([key]) => typeof v[key] !== 'number' || (key !== 'rate' && v[key] <= 0))) return null;
+  if (required.some(([key]) => typeof v[key] !== 'number' || (key !== 'rate' && (v[key] ?? 0) <= 0))) return null;
   switch (slug) {
-    case 'position-size': return v.risk > 100 ? null : v.balance * v.risk / 100 / (v.stop * v.pipValue);
-    case 'pip-value': return v.lots * v.contract * v.pip * v.conversion;
-    case 'margin': return v.lots * v.contract * v.price * v.conversion / v.leverage;
-    case 'profit-loss': return (v.exit - v.entry) * (v.direction === -1 ? -1 : 1) * v.lots * v.contract * v.conversion;
-    case 'leverage': return v.lots * v.contract * v.price * v.conversion / v.equity;
-    case 'swap': return v.lots * v.rate * v.nights;
+    case 'position-size': return (v['risk'] ?? NaN) > 100 ? null : (v['balance'] ?? NaN) * (v['risk'] ?? NaN) / 100 / ((v['stop'] ?? NaN) * (v['pipValue'] ?? NaN));
+    case 'pip-value': return (v['lots'] ?? NaN) * (v['contract'] ?? NaN) * (v['pip'] ?? NaN) * (v['conversion'] ?? NaN);
+    case 'margin': return (v['lots'] ?? NaN) * (v['contract'] ?? NaN) * (v['price'] ?? NaN) * (v['conversion'] ?? NaN) / (v['leverage'] ?? NaN);
+    case 'profit-loss': return ((v['exit'] ?? NaN) - (v['entry'] ?? NaN)) * ((v['direction'] ?? NaN) === -1 ? -1 : 1) * (v['lots'] ?? NaN) * (v['contract'] ?? NaN) * (v['conversion'] ?? NaN);
+    case 'leverage': return (v['lots'] ?? NaN) * (v['contract'] ?? NaN) * (v['price'] ?? NaN) * (v['conversion'] ?? NaN) / (v['equity'] ?? NaN);
+    case 'swap': return (v['lots'] ?? NaN) * (v['rate'] ?? NaN) * (v['nights'] ?? NaN);
   }
 }

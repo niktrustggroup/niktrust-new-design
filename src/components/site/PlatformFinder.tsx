@@ -6,7 +6,7 @@ import {KINDS,fa,type Kind} from '@/lib/data';
 const STEPS=['بازار','تجربه','سرمایه','واریز و برداشت','اولویت‌ها','نتیجه'];
 export function PlatformFinder(){
  const [step,setStep]=useState(0);const [kind,setKind]=useState<Kind>('broker');const [experience,setExperience]=useState('');const [budget,setBudget]=useState('');const [payment,setPayment]=useState('');const [priorities,setPriorities]=useState<string[]>([]);
- const options=step===0?KINDS.map(k=>[k.id,k.plural]):step===1?[['beginner','تازه‌کار'],['intermediate','تجربهٔ متوسط'],['advanced','باتجربه']]:step===2?[['under100','کمتر از ۱۰۰ دلار'],['100to1000','۱۰۰ تا ۱٬۰۰۰ دلار'],['over1000','بیش از ۱٬۰۰۰ دلار']]:step===3?[['local','پرداخت ریالی'],['crypto','رمزارز'],['bank','انتقال بانکی'],['any','محدودیتی ندارم']]:[['iran','دسترسی از ایران'],['persian','پشتیبانی فارسی'],['cost','هزینهٔ پایین'],['license','مجوز و شفافیت']];
+ const options: [string,string][]=step===0?KINDS.map(k=>[k.id,k.plural]):step===1?[['beginner','تازه‌کار'],['intermediate','تجربهٔ متوسط'],['advanced','باتجربه']]:step===2?[['under100','کمتر از ۱۰۰ دلار'],['100to1000','۱۰۰ تا ۱٬۰۰۰ دلار'],['over1000','بیش از ۱٬۰۰۰ دلار']]:step===3?[['local','پرداخت ریالی'],['crypto','رمزارز'],['bank','انتقال بانکی'],['any','محدودیتی ندارم']]:[['iran','دسترسی از ایران'],['persian','پشتیبانی فارسی'],['cost','هزینهٔ پایین'],['license','مجوز و شفافیت']];
  const current=step===0?kind:step===1?experience:step===2?budget:payment;
  const select=(v:string)=>{if(step===0)setKind(v as Kind);else if(step===1)setExperience(v);else if(step===2)setBudget(v);else if(step===3)setPayment(v);else setPriorities(p=>p.includes(v)?p.filter(x=>x!==v):[...p,v]);};
  const enabled=step===4?priorities.length>0:!!current;
