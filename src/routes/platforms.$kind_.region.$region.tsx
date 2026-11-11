@@ -1,0 +1,4 @@
+import {createFileRoute,notFound,Link} from '@tanstack/react-router';
+import {Page,meta} from '@/components/site/ui';
+export const Route=createFileRoute('/platforms/$kind_/region/$region')({loader:({params})=>{if(params.kind!=='exchange'||!['iranian','international'].includes(params.region))throw notFound();return params.region==='iranian'?'صرافی‌های ایرانی':'صرافی‌های بین‌المللی';},head:({loaderData:title})=>meta(title??'صرافی‌ها','صرافی‌ها بر اساس محل ثبت و دسترسی؛ بدون نسبت دادن موقعیت جغرافیایی فرضی.'),component:Region});
+function Region(){const title=Route.useLoaderData();return <Page title={title} lead="محل ثبت و دسترسی باید با منبع رسمی بررسی شود."><p className="max-w-2xl text-sm leading-8 text-muted-foreground">محل ثبت تأییدشده برای داده‌های نمونهٔ فعلی موجود نیست؛ صرافی‌ای به‌طور فرضی ایرانی یا بین‌المللی معرفی نمی‌شود.</p><Link to="/platforms/$kind" params={{kind:'exchange'}} className="mt-6 inline-block text-primary">فهرست همهٔ صرافی‌ها ←</Link></Page>}

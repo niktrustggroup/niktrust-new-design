@@ -11,16 +11,47 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as BestRouteImport } from './routes/best'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as CheckRouteImport } from './routes/check'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CorrectionsRouteImport } from './routes/corrections'
+import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as FinderRouteImport } from './routes/finder'
+import { Route as GlossaryRouteImport } from './routes/glossary'
+import { Route as HowWeMakeMoneyRouteImport } from './routes/how-we-make-money'
+import { Route as MarketsRouteImport } from './routes/markets'
+import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as MethodologyRouteImport } from './routes/methodology'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as TerminalRouteImport } from './routes/terminal'
+import { Route as ToolsRouteImport } from './routes/tools'
+import { Route as AboutTeamRouteImport } from './routes/about_.team'
+import { Route as AccountIndexRouteImport } from './routes/account.index'
+import { Route as AccountPageRouteImport } from './routes/account.$page'
+import { Route as AlertsIndexRouteImport } from './routes/alerts.index'
+import { Route as AlertsReportRouteImport } from './routes/alerts.report'
+import { Route as BestListRouteImport } from './routes/best_.$list'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as LegalPageRouteImport } from './routes/legal.$page'
+import { Route as MarketsIndexRouteImport } from './routes/markets.index'
+import { Route as MarketsSlugRouteImport } from './routes/markets.$slug'
+import { Route as MembershipPageRouteImport } from './routes/membership_.$page'
+import { Route as PartnersPageRouteImport } from './routes/partners_.$page'
+import { Route as TerminalIndexRouteImport } from './routes/terminal.index'
+import { Route as TerminalSlugRouteImport } from './routes/terminal.$slug'
+import { Route as ToolsIndexRouteImport } from './routes/tools.index'
+import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
 import { Route as PlatformsKindIndexRouteImport } from './routes/platforms.$kind.index'
 import { Route as PlatformsKindSlugRouteImport } from './routes/platforms.$kind.$slug'
+import { Route as PlatformsKindRegionRegionRouteImport } from './routes/platforms.$kind_.region.$region'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -32,9 +63,29 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertsRoute = AlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BestRoute = BestRouteImport.update({
   id: '/best',
   path: '/best',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckRoute = CheckRouteImport.update({
+  id: '/check',
+  path: '/check',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompareRoute = CompareRouteImport.update({
@@ -47,14 +98,104 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CorrectionsRoute = CorrectionsRouteImport.update({
+  id: '/corrections',
+  path: '/corrections',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorialPolicyRoute = EditorialPolicyRouteImport.update({
+  id: '/editorial-policy',
+  path: '/editorial-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinderRoute = FinderRouteImport.update({
+  id: '/finder',
+  path: '/finder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GlossaryRoute = GlossaryRouteImport.update({
+  id: '/glossary',
+  path: '/glossary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowWeMakeMoneyRoute = HowWeMakeMoneyRouteImport.update({
+  id: '/how-we-make-money',
+  path: '/how-we-make-money',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketsRoute = MarketsRouteImport.update({
+  id: '/markets',
+  path: '/markets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipRoute = MembershipRouteImport.update({
+  id: '/membership',
+  path: '/membership',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MethodologyRoute = MethodologyRouteImport.update({
   id: '/methodology',
   path: '/methodology',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TerminalRoute = TerminalRouteImport.update({
+  id: '/terminal',
+  path: '/terminal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsRoute = ToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutTeamRoute = AboutTeamRouteImport.update({
+  id: '/about_/team',
+  path: '/about/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountIndexRoute = AccountIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AccountRoute,
+} as any)
+const AccountPageRoute = AccountPageRouteImport.update({
+  id: '/$page',
+  path: '/$page',
+  getParentRoute: () => AccountRoute,
+} as any)
+const AlertsIndexRoute = AlertsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AlertsRoute,
+} as any)
+const AlertsReportRoute = AlertsReportRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => AlertsRoute,
+} as any)
+const BestListRoute = BestListRouteImport.update({
+  id: '/best_/$list',
+  path: '/best/$list',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnIndexRoute = LearnIndexRouteImport.update({
@@ -72,6 +213,46 @@ const LegalPageRoute = LegalPageRouteImport.update({
   path: '/legal/$page',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MarketsIndexRoute = MarketsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MarketsRoute,
+} as any)
+const MarketsSlugRoute = MarketsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => MarketsRoute,
+} as any)
+const MembershipPageRoute = MembershipPageRouteImport.update({
+  id: '/membership_/$page',
+  path: '/membership/$page',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersPageRoute = PartnersPageRouteImport.update({
+  id: '/partners_/$page',
+  path: '/partners/$page',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TerminalIndexRoute = TerminalIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TerminalRoute,
+} as any)
+const TerminalSlugRoute = TerminalSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => TerminalRoute,
+} as any)
+const ToolsIndexRoute = ToolsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ToolsRoute,
+} as any)
+const ToolsSlugRoute = ToolsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ToolsRoute,
+} as any)
 const PlatformsKindIndexRoute = PlatformsKindIndexRouteImport.update({
   id: '/platforms/$kind/',
   path: '/platforms/$kind/',
@@ -82,108 +263,311 @@ const PlatformsKindSlugRoute = PlatformsKindSlugRouteImport.update({
   path: '/platforms/$kind/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlatformsKindRegionRegionRoute =
+  PlatformsKindRegionRegionRouteImport.update({
+    id: '/platforms/$kind_/region/$region',
+    path: '/platforms/$kind/region/$region',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/account': typeof AccountRouteWithChildren
+  '/alerts': typeof AlertsRouteWithChildren
   '/best': typeof BestRoute
+  '/blog': typeof BlogRoute
+  '/check': typeof CheckRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/corrections': typeof CorrectionsRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
+  '/faq': typeof FaqRoute
+  '/finder': typeof FinderRoute
+  '/glossary': typeof GlossaryRoute
+  '/how-we-make-money': typeof HowWeMakeMoneyRoute
+  '/markets': typeof MarketsRouteWithChildren
+  '/membership': typeof MembershipRoute
   '/methodology': typeof MethodologyRoute
+  '/news': typeof NewsRoute
+  '/partners': typeof PartnersRoute
   '/search': typeof SearchRoute
+  '/terminal': typeof TerminalRouteWithChildren
+  '/tools': typeof ToolsRouteWithChildren
+  '/about/team': typeof AboutTeamRoute
+  '/account/$page': typeof AccountPageRoute
+  '/alerts/report': typeof AlertsReportRoute
+  '/best/$list': typeof BestListRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
+  '/markets/$slug': typeof MarketsSlugRoute
+  '/membership/$page': typeof MembershipPageRoute
+  '/partners/$page': typeof PartnersPageRoute
+  '/terminal/$slug': typeof TerminalSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
+  '/account/': typeof AccountIndexRoute
+  '/alerts/': typeof AlertsIndexRoute
   '/learn/': typeof LearnIndexRoute
+  '/markets/': typeof MarketsIndexRoute
+  '/terminal/': typeof TerminalIndexRoute
+  '/tools/': typeof ToolsIndexRoute
   '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
   '/platforms/$kind/': typeof PlatformsKindIndexRoute
+  '/platforms/$kind/region/$region': typeof PlatformsKindRegionRegionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/best': typeof BestRoute
+  '/blog': typeof BlogRoute
+  '/check': typeof CheckRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/corrections': typeof CorrectionsRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
+  '/faq': typeof FaqRoute
+  '/finder': typeof FinderRoute
+  '/glossary': typeof GlossaryRoute
+  '/how-we-make-money': typeof HowWeMakeMoneyRoute
+  '/membership': typeof MembershipRoute
   '/methodology': typeof MethodologyRoute
+  '/news': typeof NewsRoute
+  '/partners': typeof PartnersRoute
   '/search': typeof SearchRoute
+  '/about/team': typeof AboutTeamRoute
+  '/account/$page': typeof AccountPageRoute
+  '/alerts/report': typeof AlertsReportRoute
+  '/best/$list': typeof BestListRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
+  '/markets/$slug': typeof MarketsSlugRoute
+  '/membership/$page': typeof MembershipPageRoute
+  '/partners/$page': typeof PartnersPageRoute
+  '/terminal/$slug': typeof TerminalSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
+  '/account': typeof AccountIndexRoute
+  '/alerts': typeof AlertsIndexRoute
   '/learn': typeof LearnIndexRoute
+  '/markets': typeof MarketsIndexRoute
+  '/terminal': typeof TerminalIndexRoute
+  '/tools': typeof ToolsIndexRoute
   '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
   '/platforms/$kind': typeof PlatformsKindIndexRoute
+  '/platforms/$kind/region/$region': typeof PlatformsKindRegionRegionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/account': typeof AccountRouteWithChildren
+  '/alerts': typeof AlertsRouteWithChildren
   '/best': typeof BestRoute
+  '/blog': typeof BlogRoute
+  '/check': typeof CheckRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/corrections': typeof CorrectionsRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
+  '/faq': typeof FaqRoute
+  '/finder': typeof FinderRoute
+  '/glossary': typeof GlossaryRoute
+  '/how-we-make-money': typeof HowWeMakeMoneyRoute
+  '/markets': typeof MarketsRouteWithChildren
+  '/membership': typeof MembershipRoute
   '/methodology': typeof MethodologyRoute
+  '/news': typeof NewsRoute
+  '/partners': typeof PartnersRoute
   '/search': typeof SearchRoute
+  '/terminal': typeof TerminalRouteWithChildren
+  '/tools': typeof ToolsRouteWithChildren
+  '/about_/team': typeof AboutTeamRoute
+  '/account/$page': typeof AccountPageRoute
+  '/alerts/report': typeof AlertsReportRoute
+  '/best_/$list': typeof BestListRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/legal/$page': typeof LegalPageRoute
+  '/markets/$slug': typeof MarketsSlugRoute
+  '/membership_/$page': typeof MembershipPageRoute
+  '/partners_/$page': typeof PartnersPageRoute
+  '/terminal/$slug': typeof TerminalSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
+  '/account/': typeof AccountIndexRoute
+  '/alerts/': typeof AlertsIndexRoute
   '/learn/': typeof LearnIndexRoute
+  '/markets/': typeof MarketsIndexRoute
+  '/terminal/': typeof TerminalIndexRoute
+  '/tools/': typeof ToolsIndexRoute
   '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
   '/platforms/$kind/': typeof PlatformsKindIndexRoute
+  '/platforms/$kind_/region/$region': typeof PlatformsKindRegionRegionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/account'
+    | '/alerts'
     | '/best'
+    | '/blog'
+    | '/check'
     | '/compare'
     | '/contact'
+    | '/corrections'
+    | '/editorial-policy'
+    | '/faq'
+    | '/finder'
+    | '/glossary'
+    | '/how-we-make-money'
+    | '/markets'
+    | '/membership'
     | '/methodology'
+    | '/news'
+    | '/partners'
     | '/search'
+    | '/terminal'
+    | '/tools'
+    | '/about/team'
+    | '/account/$page'
+    | '/alerts/report'
+    | '/best/$list'
     | '/learn/$slug'
     | '/legal/$page'
+    | '/markets/$slug'
+    | '/membership/$page'
+    | '/partners/$page'
+    | '/terminal/$slug'
+    | '/tools/$slug'
+    | '/account/'
+    | '/alerts/'
     | '/learn/'
+    | '/markets/'
+    | '/terminal/'
+    | '/tools/'
     | '/platforms/$kind/$slug'
     | '/platforms/$kind/'
+    | '/platforms/$kind/region/$region'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/best'
+    | '/blog'
+    | '/check'
     | '/compare'
     | '/contact'
+    | '/corrections'
+    | '/editorial-policy'
+    | '/faq'
+    | '/finder'
+    | '/glossary'
+    | '/how-we-make-money'
+    | '/membership'
     | '/methodology'
+    | '/news'
+    | '/partners'
     | '/search'
+    | '/about/team'
+    | '/account/$page'
+    | '/alerts/report'
+    | '/best/$list'
     | '/learn/$slug'
     | '/legal/$page'
+    | '/markets/$slug'
+    | '/membership/$page'
+    | '/partners/$page'
+    | '/terminal/$slug'
+    | '/tools/$slug'
+    | '/account'
+    | '/alerts'
     | '/learn'
+    | '/markets'
+    | '/terminal'
+    | '/tools'
     | '/platforms/$kind/$slug'
     | '/platforms/$kind'
+    | '/platforms/$kind/region/$region'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/account'
+    | '/alerts'
     | '/best'
+    | '/blog'
+    | '/check'
     | '/compare'
     | '/contact'
+    | '/corrections'
+    | '/editorial-policy'
+    | '/faq'
+    | '/finder'
+    | '/glossary'
+    | '/how-we-make-money'
+    | '/markets'
+    | '/membership'
     | '/methodology'
+    | '/news'
+    | '/partners'
     | '/search'
+    | '/terminal'
+    | '/tools'
+    | '/about_/team'
+    | '/account/$page'
+    | '/alerts/report'
+    | '/best_/$list'
     | '/learn/$slug'
     | '/legal/$page'
+    | '/markets/$slug'
+    | '/membership_/$page'
+    | '/partners_/$page'
+    | '/terminal/$slug'
+    | '/tools/$slug'
+    | '/account/'
+    | '/alerts/'
     | '/learn/'
+    | '/markets/'
+    | '/terminal/'
+    | '/tools/'
     | '/platforms/$kind/$slug'
     | '/platforms/$kind/'
+    | '/platforms/$kind_/region/$region'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AccountRoute: typeof AccountRouteWithChildren
+  AlertsRoute: typeof AlertsRouteWithChildren
   BestRoute: typeof BestRoute
+  BlogRoute: typeof BlogRoute
+  CheckRoute: typeof CheckRoute
   CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
+  CorrectionsRoute: typeof CorrectionsRoute
+  EditorialPolicyRoute: typeof EditorialPolicyRoute
+  FaqRoute: typeof FaqRoute
+  FinderRoute: typeof FinderRoute
+  GlossaryRoute: typeof GlossaryRoute
+  HowWeMakeMoneyRoute: typeof HowWeMakeMoneyRoute
+  MarketsRoute: typeof MarketsRouteWithChildren
+  MembershipRoute: typeof MembershipRoute
   MethodologyRoute: typeof MethodologyRoute
+  NewsRoute: typeof NewsRoute
+  PartnersRoute: typeof PartnersRoute
   SearchRoute: typeof SearchRoute
+  TerminalRoute: typeof TerminalRouteWithChildren
+  ToolsRoute: typeof ToolsRouteWithChildren
+  AboutTeamRoute: typeof AboutTeamRoute
+  BestListRoute: typeof BestListRoute
   LearnSlugRoute: typeof LearnSlugRoute
   LegalPageRoute: typeof LegalPageRoute
+  MembershipPageRoute: typeof MembershipPageRoute
+  PartnersPageRoute: typeof PartnersPageRoute
   LearnIndexRoute: typeof LearnIndexRoute
   PlatformsKindSlugRoute: typeof PlatformsKindSlugRoute
   PlatformsKindIndexRoute: typeof PlatformsKindIndexRoute
+  PlatformsKindRegionRegionRoute: typeof PlatformsKindRegionRegionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -202,11 +586,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alerts': {
+      id: '/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/best': {
       id: '/best'
       path: '/best'
       fullPath: '/best'
       preLoaderRoute: typeof BestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/check': {
+      id: '/check'
+      path: '/check'
+      fullPath: '/check'
+      preLoaderRoute: typeof CheckRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/compare': {
@@ -223,6 +635,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/corrections': {
+      id: '/corrections'
+      path: '/corrections'
+      fullPath: '/corrections'
+      preLoaderRoute: typeof CorrectionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editorial-policy': {
+      id: '/editorial-policy'
+      path: '/editorial-policy'
+      fullPath: '/editorial-policy'
+      preLoaderRoute: typeof EditorialPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finder': {
+      id: '/finder'
+      path: '/finder'
+      fullPath: '/finder'
+      preLoaderRoute: typeof FinderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/glossary': {
+      id: '/glossary'
+      path: '/glossary'
+      fullPath: '/glossary'
+      preLoaderRoute: typeof GlossaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-we-make-money': {
+      id: '/how-we-make-money'
+      path: '/how-we-make-money'
+      fullPath: '/how-we-make-money'
+      preLoaderRoute: typeof HowWeMakeMoneyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/markets': {
+      id: '/markets'
+      path: '/markets'
+      fullPath: '/markets'
+      preLoaderRoute: typeof MarketsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/membership': {
+      id: '/membership'
+      path: '/membership'
+      fullPath: '/membership'
+      preLoaderRoute: typeof MembershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/methodology': {
       id: '/methodology'
       path: '/methodology'
@@ -230,11 +698,81 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MethodologyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terminal': {
+      id: '/terminal'
+      path: '/terminal'
+      fullPath: '/terminal'
+      preLoaderRoute: typeof TerminalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools': {
+      id: '/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof ToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about_/team': {
+      id: '/about_/team'
+      path: '/about/team'
+      fullPath: '/about/team'
+      preLoaderRoute: typeof AboutTeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/': {
+      id: '/account/'
+      path: '/'
+      fullPath: '/account/'
+      preLoaderRoute: typeof AccountIndexRouteImport
+      parentRoute: typeof AccountRoute
+    }
+    '/account/$page': {
+      id: '/account/$page'
+      path: '/$page'
+      fullPath: '/account/$page'
+      preLoaderRoute: typeof AccountPageRouteImport
+      parentRoute: typeof AccountRoute
+    }
+    '/alerts/': {
+      id: '/alerts/'
+      path: '/'
+      fullPath: '/alerts/'
+      preLoaderRoute: typeof AlertsIndexRouteImport
+      parentRoute: typeof AlertsRoute
+    }
+    '/alerts/report': {
+      id: '/alerts/report'
+      path: '/report'
+      fullPath: '/alerts/report'
+      preLoaderRoute: typeof AlertsReportRouteImport
+      parentRoute: typeof AlertsRoute
+    }
+    '/best_/$list': {
+      id: '/best_/$list'
+      path: '/best/$list'
+      fullPath: '/best/$list'
+      preLoaderRoute: typeof BestListRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn/': {
@@ -258,6 +796,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/markets/': {
+      id: '/markets/'
+      path: '/'
+      fullPath: '/markets/'
+      preLoaderRoute: typeof MarketsIndexRouteImport
+      parentRoute: typeof MarketsRoute
+    }
+    '/markets/$slug': {
+      id: '/markets/$slug'
+      path: '/$slug'
+      fullPath: '/markets/$slug'
+      preLoaderRoute: typeof MarketsSlugRouteImport
+      parentRoute: typeof MarketsRoute
+    }
+    '/membership_/$page': {
+      id: '/membership_/$page'
+      path: '/membership/$page'
+      fullPath: '/membership/$page'
+      preLoaderRoute: typeof MembershipPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners_/$page': {
+      id: '/partners_/$page'
+      path: '/partners/$page'
+      fullPath: '/partners/$page'
+      preLoaderRoute: typeof PartnersPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terminal/': {
+      id: '/terminal/'
+      path: '/'
+      fullPath: '/terminal/'
+      preLoaderRoute: typeof TerminalIndexRouteImport
+      parentRoute: typeof TerminalRoute
+    }
+    '/terminal/$slug': {
+      id: '/terminal/$slug'
+      path: '/$slug'
+      fullPath: '/terminal/$slug'
+      preLoaderRoute: typeof TerminalSlugRouteImport
+      parentRoute: typeof TerminalRoute
+    }
+    '/tools/': {
+      id: '/tools/'
+      path: '/'
+      fullPath: '/tools/'
+      preLoaderRoute: typeof ToolsIndexRouteImport
+      parentRoute: typeof ToolsRoute
+    }
+    '/tools/$slug': {
+      id: '/tools/$slug'
+      path: '/$slug'
+      fullPath: '/tools/$slug'
+      preLoaderRoute: typeof ToolsSlugRouteImport
+      parentRoute: typeof ToolsRoute
+    }
     '/platforms/$kind/': {
       id: '/platforms/$kind/'
       path: '/platforms/$kind'
@@ -272,22 +866,115 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlatformsKindSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/platforms/$kind_/region/$region': {
+      id: '/platforms/$kind_/region/$region'
+      path: '/platforms/$kind/region/$region'
+      fullPath: '/platforms/$kind/region/$region'
+      preLoaderRoute: typeof PlatformsKindRegionRegionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
+
+interface AccountRouteChildren {
+  AccountPageRoute: typeof AccountPageRoute
+  AccountIndexRoute: typeof AccountIndexRoute
+}
+
+const AccountRouteChildren: AccountRouteChildren = {
+  AccountPageRoute: AccountPageRoute,
+  AccountIndexRoute: AccountIndexRoute,
+}
+
+const AccountRouteWithChildren =
+  AccountRoute._addFileChildren(AccountRouteChildren)
+
+interface AlertsRouteChildren {
+  AlertsReportRoute: typeof AlertsReportRoute
+  AlertsIndexRoute: typeof AlertsIndexRoute
+}
+
+const AlertsRouteChildren: AlertsRouteChildren = {
+  AlertsReportRoute: AlertsReportRoute,
+  AlertsIndexRoute: AlertsIndexRoute,
+}
+
+const AlertsRouteWithChildren =
+  AlertsRoute._addFileChildren(AlertsRouteChildren)
+
+interface MarketsRouteChildren {
+  MarketsSlugRoute: typeof MarketsSlugRoute
+  MarketsIndexRoute: typeof MarketsIndexRoute
+}
+
+const MarketsRouteChildren: MarketsRouteChildren = {
+  MarketsSlugRoute: MarketsSlugRoute,
+  MarketsIndexRoute: MarketsIndexRoute,
+}
+
+const MarketsRouteWithChildren =
+  MarketsRoute._addFileChildren(MarketsRouteChildren)
+
+interface TerminalRouteChildren {
+  TerminalSlugRoute: typeof TerminalSlugRoute
+  TerminalIndexRoute: typeof TerminalIndexRoute
+}
+
+const TerminalRouteChildren: TerminalRouteChildren = {
+  TerminalSlugRoute: TerminalSlugRoute,
+  TerminalIndexRoute: TerminalIndexRoute,
+}
+
+const TerminalRouteWithChildren = TerminalRoute._addFileChildren(
+  TerminalRouteChildren,
+)
+
+interface ToolsRouteChildren {
+  ToolsSlugRoute: typeof ToolsSlugRoute
+  ToolsIndexRoute: typeof ToolsIndexRoute
+}
+
+const ToolsRouteChildren: ToolsRouteChildren = {
+  ToolsSlugRoute: ToolsSlugRoute,
+  ToolsIndexRoute: ToolsIndexRoute,
+}
+
+const ToolsRouteWithChildren = ToolsRoute._addFileChildren(ToolsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AccountRoute: AccountRouteWithChildren,
+  AlertsRoute: AlertsRouteWithChildren,
   BestRoute: BestRoute,
+  BlogRoute: BlogRoute,
+  CheckRoute: CheckRoute,
   CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
+  CorrectionsRoute: CorrectionsRoute,
+  EditorialPolicyRoute: EditorialPolicyRoute,
+  FaqRoute: FaqRoute,
+  FinderRoute: FinderRoute,
+  GlossaryRoute: GlossaryRoute,
+  HowWeMakeMoneyRoute: HowWeMakeMoneyRoute,
+  MarketsRoute: MarketsRouteWithChildren,
+  MembershipRoute: MembershipRoute,
   MethodologyRoute: MethodologyRoute,
+  NewsRoute: NewsRoute,
+  PartnersRoute: PartnersRoute,
   SearchRoute: SearchRoute,
+  TerminalRoute: TerminalRouteWithChildren,
+  ToolsRoute: ToolsRouteWithChildren,
+  AboutTeamRoute: AboutTeamRoute,
+  BestListRoute: BestListRoute,
   LearnSlugRoute: LearnSlugRoute,
   LegalPageRoute: LegalPageRoute,
+  MembershipPageRoute: MembershipPageRoute,
+  PartnersPageRoute: PartnersPageRoute,
   LearnIndexRoute: LearnIndexRoute,
   PlatformsKindSlugRoute: PlatformsKindSlugRoute,
   PlatformsKindIndexRoute: PlatformsKindIndexRoute,
+  PlatformsKindRegionRegionRoute: PlatformsKindRegionRegionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

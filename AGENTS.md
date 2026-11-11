@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Feature modules
+- Keep financial calculator definitions and pure formulas in a browser-safe shared module; test each formula independently of its UI.
+- Use public TradingView embeds for charts; never invent live prices or timestamps, and keep market watchlists in React session state until account storage is connected.
+- Keep reference features that have no connected service explicitly unavailable; never simulate a successful report, payment, account or subscription action.
