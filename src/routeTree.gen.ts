@@ -10,33 +10,180 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BestRouteImport } from './routes/best'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as MethodologyRouteImport } from './routes/methodology'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as LearnIndexRouteImport } from './routes/learn.index'
+import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
+import { Route as LegalPageRouteImport } from './routes/legal.$page'
+import { Route as PlatformsKindIndexRouteImport } from './routes/platforms.$kind.index'
+import { Route as PlatformsKindSlugRouteImport } from './routes/platforms.$kind.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BestRoute = BestRouteImport.update({
+  id: '/best',
+  path: '/best',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MethodologyRoute = MethodologyRouteImport.update({
+  id: '/methodology',
+  path: '/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnIndexRoute = LearnIndexRouteImport.update({
+  id: '/learn/',
+  path: '/learn/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnSlugRoute = LearnSlugRouteImport.update({
+  id: '/learn/$slug',
+  path: '/learn/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPageRoute = LegalPageRouteImport.update({
+  id: '/legal/$page',
+  path: '/legal/$page',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlatformsKindIndexRoute = PlatformsKindIndexRouteImport.update({
+  id: '/platforms/$kind/',
+  path: '/platforms/$kind/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlatformsKindSlugRoute = PlatformsKindSlugRouteImport.update({
+  id: '/platforms/$kind/$slug',
+  path: '/platforms/$kind/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/best': typeof BestRoute
+  '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
+  '/methodology': typeof MethodologyRoute
+  '/search': typeof SearchRoute
+  '/learn/$slug': typeof LearnSlugRoute
+  '/legal/$page': typeof LegalPageRoute
+  '/learn/': typeof LearnIndexRoute
+  '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
+  '/platforms/$kind/': typeof PlatformsKindIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/best': typeof BestRoute
+  '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
+  '/methodology': typeof MethodologyRoute
+  '/search': typeof SearchRoute
+  '/learn/$slug': typeof LearnSlugRoute
+  '/legal/$page': typeof LegalPageRoute
+  '/learn': typeof LearnIndexRoute
+  '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
+  '/platforms/$kind': typeof PlatformsKindIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/best': typeof BestRoute
+  '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
+  '/methodology': typeof MethodologyRoute
+  '/search': typeof SearchRoute
+  '/learn/$slug': typeof LearnSlugRoute
+  '/legal/$page': typeof LegalPageRoute
+  '/learn/': typeof LearnIndexRoute
+  '/platforms/$kind/$slug': typeof PlatformsKindSlugRoute
+  '/platforms/$kind/': typeof PlatformsKindIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/best'
+    | '/compare'
+    | '/contact'
+    | '/methodology'
+    | '/search'
+    | '/learn/$slug'
+    | '/legal/$page'
+    | '/learn/'
+    | '/platforms/$kind/$slug'
+    | '/platforms/$kind/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/best'
+    | '/compare'
+    | '/contact'
+    | '/methodology'
+    | '/search'
+    | '/learn/$slug'
+    | '/legal/$page'
+    | '/learn'
+    | '/platforms/$kind/$slug'
+    | '/platforms/$kind'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/best'
+    | '/compare'
+    | '/contact'
+    | '/methodology'
+    | '/search'
+    | '/learn/$slug'
+    | '/legal/$page'
+    | '/learn/'
+    | '/platforms/$kind/$slug'
+    | '/platforms/$kind/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  BestRoute: typeof BestRoute
+  CompareRoute: typeof CompareRoute
+  ContactRoute: typeof ContactRoute
+  MethodologyRoute: typeof MethodologyRoute
+  SearchRoute: typeof SearchRoute
+  LearnSlugRoute: typeof LearnSlugRoute
+  LegalPageRoute: typeof LegalPageRoute
+  LearnIndexRoute: typeof LearnIndexRoute
+  PlatformsKindSlugRoute: typeof PlatformsKindSlugRoute
+  PlatformsKindIndexRoute: typeof PlatformsKindIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +195,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/best': {
+      id: '/best'
+      path: '/best'
+      fullPath: '/best'
+      preLoaderRoute: typeof BestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/methodology': {
+      id: '/methodology'
+      path: '/methodology'
+      fullPath: '/methodology'
+      preLoaderRoute: typeof MethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/': {
+      id: '/learn/'
+      path: '/learn'
+      fullPath: '/learn/'
+      preLoaderRoute: typeof LearnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/$slug': {
+      id: '/learn/$slug'
+      path: '/learn/$slug'
+      fullPath: '/learn/$slug'
+      preLoaderRoute: typeof LearnSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/$page': {
+      id: '/legal/$page'
+      path: '/legal/$page'
+      fullPath: '/legal/$page'
+      preLoaderRoute: typeof LegalPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platforms/$kind/': {
+      id: '/platforms/$kind/'
+      path: '/platforms/$kind'
+      fullPath: '/platforms/$kind/'
+      preLoaderRoute: typeof PlatformsKindIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platforms/$kind/$slug': {
+      id: '/platforms/$kind/$slug'
+      path: '/platforms/$kind/$slug'
+      fullPath: '/platforms/$kind/$slug'
+      preLoaderRoute: typeof PlatformsKindSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  BestRoute: BestRoute,
+  CompareRoute: CompareRoute,
+  ContactRoute: ContactRoute,
+  MethodologyRoute: MethodologyRoute,
+  SearchRoute: SearchRoute,
+  LearnSlugRoute: LearnSlugRoute,
+  LegalPageRoute: LegalPageRoute,
+  LearnIndexRoute: LearnIndexRoute,
+  PlatformsKindSlugRoute: PlatformsKindSlugRoute,
+  PlatformsKindIndexRoute: PlatformsKindIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

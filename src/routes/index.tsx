@@ -2,10 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   Search, Sprout, Scale, FileSearch, ChevronLeft, ShieldCheck, Coins, Headset, Globe2,
-  Menu, X, CalendarClock, Info,
+  CalendarClock,
 } from "lucide-react";
-import logo from "@/assets/niktrust-logotype.svg.asset.json";
-import logoWhite from "@/assets/niktrust-logotype-white.svg.asset.json";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { KINDS, byKind, ARTICLES, type Kind } from "@/lib/data";
+import { PlatformRow } from "@/components/site/ui";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -21,71 +22,14 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type Kind = "broker" | "exchange" | "prop";
-const KINDS: { id: Kind; label: string }[] = [
-  { id: "broker", label: "بروکر" },
-  { id: "exchange", label: "صرافی" },
-  { id: "prop", label: "پراپ‌فرم" },
-];
-
-// نمونه داده — تا اتصال پایگاه داده جایگزین می‌شود
-const TOP: Record<Kind, { fa: string; en: string; score: string; reg: string; iran: string }[]> = {
-  broker: [
-    { fa: "آلفا مارکتس", en: "Alpha Markets", score: "۸٫۹", reg: "دارای مجوز", iran: "اعلام نشده" },
-    { fa: "نوا اف‌اکس", en: "Nova FX", score: "۸٫۶", reg: "دارای مجوز", iran: "دسترسی محدود" },
-    { fa: "مریدین", en: "Meridian", score: "۸٫۲", reg: "دارای مجوز", iran: "اعلام نشده" },
-    { fa: "اطلس ترید", en: "Atlas Trade", score: "۷٫۹", reg: "مجوز فراساحلی", iran: "دسترسی دارد" },
-    { fa: "کوانتا", en: "Quanta", score: "۷٫۵", reg: "مجوز فراساحلی", iran: "اعلام نشده" },
-  ],
-  exchange: [
-    { fa: "بیت‌پل", en: "BitPal", score: "۸٫۷", reg: "ثبت‌شده", iran: "دسترسی دارد" },
-    { fa: "کوین‌گیت", en: "CoinGate", score: "۸٫۳", reg: "ثبت‌شده", iran: "اعلام نشده" },
-    { fa: "ارزین", en: "Arzin", score: "۸٫۰", reg: "اعلام نشده", iran: "دسترسی دارد" },
-    { fa: "توکنیا", en: "Tokenia", score: "۷٫۶", reg: "ثبت‌شده", iran: "دسترسی محدود" },
-    { fa: "ساتوشی‌لند", en: "Satoshiland", score: "۷٫۲", reg: "اعلام نشده", iran: "اعلام نشده" },
-  ],
-  prop: [
-    { fa: "فاندد پرو", en: "Funded Pro", score: "۸٫۵", reg: "سابقه پرداخت شفاف", iran: "دسترسی دارد" },
-    { fa: "تریدر کپیتال", en: "Trader Capital", score: "۸٫۱", reg: "سابقه پرداخت شفاف", iran: "اعلام نشده" },
-    { fa: "اسکیل‌فاند", en: "SkillFund", score: "۷٫۸", reg: "اعلام نشده", iran: "دسترسی محدود" },
-    { fa: "چلنج‌پلاس", en: "ChallengePlus", score: "۷٫۴", reg: "اعلام نشده", iran: "اعلام نشده" },
-    { fa: "پراپ‌وان", en: "PropOne", score: "۷٫۰", reg: "اعلام نشده", iran: "اعلام نشده" },
-  ],
-};
-
-const NAV = ["پلتفرم‌ها", "بهترین‌ها", "مقایسه و ابزارها", "آموزش و اخبار", "دربارهٔ نیک‌تراست"];
 
 function Index() {
+  const nav = useNavigate();
   const [heroKind, setHeroKind] = useState<Kind>("broker");
   const [topKind, setTopKind] = useState<Kind>("broker");
-  const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border bg-card">
-        <div className="mx-auto flex h-16 max-w-[1200px] items-center gap-6 px-4">
-          <a href="/" aria-label="نیک‌تراست"><img src={logo.url} alt="نیک‌تراست" className="h-8 w-auto" /></a>
-          <nav className="hidden flex-1 items-center gap-1 lg:flex">
-            {NAV.map((n) => (
-              <a key={n} href="#" className="rounded-lg px-3 py-2 text-[15px] font-medium text-foreground hover:bg-accent">{n}</a>
-            ))}
-          </nav>
-          <div className="ms-auto flex items-center gap-2">
-            <button aria-label="جستجو" className="rounded-lg p-2 text-muted-foreground hover:bg-accent"><Search className="size-5" /></button>
-            <a href="#top" className="hidden rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 sm:inline-flex">پیدا کردن پلتفرم مناسب</a>
-            <button aria-label="منو" aria-expanded={open} onClick={() => setOpen(!open)} className="rounded-lg p-2 lg:hidden">{open ? <X className="size-5" /> : <Menu className="size-5" />}</button>
-          </div>
-        </div>
-        {open && (
-          <div className="border-t border-border bg-card px-4 pb-4 lg:hidden">
-            <a href="#top" className="my-3 flex h-12 items-center justify-center rounded-lg bg-primary font-semibold text-primary-foreground">پیدا کردن پلتفرم مناسب</a>
-            {NAV.map((n) => (
-              <a key={n} href="#" className="flex h-[52px] items-center justify-between border-b border-border">{n}<ChevronLeft className="size-4 text-muted-foreground" /></a>
-            ))}
-          </div>
-        )}
-      </header>
+    <div className="bg-background">
 
       <main className="mx-auto max-w-[1200px] px-4">
         {/* S1 Hero */}
@@ -100,13 +44,13 @@ function Index() {
                   className={`rounded-lg px-5 py-2 text-sm font-semibold transition-colors ${heroKind === k.id ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-accent"}`}>{k.label}</button>
               ))}
             </div>
-            <div className="mt-3 flex flex-col gap-3 sm:flex-row">
+            <form onSubmit={(e) => { e.preventDefault(); const q = new FormData(e.currentTarget).get("q") as string; nav({ to: "/search", search: { q: q || undefined } }); }} className="mt-3 flex flex-col gap-3 sm:flex-row">
               <label className="flex h-12 flex-1 items-center gap-2 rounded-xl border border-input bg-card px-4 focus-within:ring-2 focus-within:ring-ring">
                 <Search className="size-5 text-muted-foreground" />
-                <input className="w-full bg-transparent outline-none placeholder:text-muted-foreground" placeholder={`نام ${KINDS.find((k) => k.id === heroKind)!.label} را جستجو کنید…`} />
+                <input name="q" className="w-full bg-transparent outline-none placeholder:text-muted-foreground" placeholder={`نام ${KINDS.find((k) => k.id === heroKind)!.label} را جستجو کنید…`} />
               </label>
-              <button className="h-12 rounded-xl bg-primary px-6 font-semibold text-primary-foreground hover:bg-primary/90">مقایسه پلتفرم‌ها</button>
-            </div>
+              <button type="button" onClick={() => nav({ to: "/platforms/$kind", params: { kind: heroKind } })} className="h-12 rounded-xl bg-primary px-6 font-semibold text-primary-foreground hover:bg-primary/90">مقایسه پلتفرم‌ها</button>
+            </form>
           </div>
           <aside className="self-end rounded-xl border border-border bg-card p-5 lg:col-span-5">
             <div className="flex items-center gap-2 font-bold text-brand-deep"><ShieldCheck className="size-5 text-success" />پنل اعتماد</div>
@@ -121,15 +65,15 @@ function Index() {
         {/* S2 Intent */}
         <section className="mt-10 grid gap-3 md:grid-cols-3">
           {[
-            { i: Sprout, t: "تازه‌کارم", d: "از کجا شروع کنم و به چه چیزی اعتماد کنم؟" },
-            { i: Scale, t: "می‌خواهم مقایسه کنم", d: "۲ تا ۴ پلتفرم هم‌نوع را کنار هم ببینید." },
-            { i: FileSearch, t: "پلتفرم خاصی را بررسی کنم", d: "خلاصهٔ تصمیم، مزایا، معایب و داده‌ها." },
-          ].map(({ i: I, t, d }) => (
-            <a key={t} href="#" className="group flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary">
+            { i: Sprout, to: "/learn", t: "تازه‌کارم", d: "از کجا شروع کنم و به چه چیزی اعتماد کنم؟" },
+            { i: Scale, to: "/compare", t: "می‌خواهم مقایسه کنم", d: "۲ تا ۴ پلتفرم هم‌نوع را کنار هم ببینید." },
+            { i: FileSearch, to: "/search", t: "پلتفرم خاصی را بررسی کنم", d: "خلاصهٔ تصمیم، مزایا، معایب و داده‌ها." },
+          ].map(({ i: I, to, t, d }) => (
+            <Link key={t} to={to as "/learn"} className="group flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary">
               <span className="grid size-12 shrink-0 place-items-center rounded-lg bg-tint text-primary"><I className="size-6" /></span>
               <span className="flex-1"><span className="block font-bold">{t}</span><span className="text-sm text-muted-foreground">{d}</span></span>
               <ChevronLeft className="size-5 text-muted-foreground transition-transform group-hover:-translate-x-1" />
-            </a>
+            </Link>
           ))}
         </section>
 
@@ -148,18 +92,9 @@ function Index() {
             </div>
           </div>
           <ol className="mt-6 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
-            {TOP[topKind].map((p, idx) => (
-              <li key={p.en} className="grid grid-cols-[auto_auto_1fr_auto] items-center gap-x-4 gap-y-2 p-4 md:grid-cols-[2rem_3rem_1fr_9rem_9rem_6rem_auto]">
-                <span className="num text-lg font-bold text-muted-foreground">{(idx + 1).toLocaleString("fa-IR")}</span>
-                <span className="grid size-12 place-items-center rounded-lg border border-border bg-muted text-xs font-bold text-brand-deep"><bdi>{p.en.slice(0, 2)}</bdi></span>
-                <span><span className="block font-bold">{p.fa}</span><bdi className="text-xs text-muted-foreground">{p.en}</bdi></span>
-                <span className="num text-start md:order-last md:text-end"><span className="text-xl font-extrabold text-primary">{p.score}</span><span className="text-xs text-muted-foreground"> از ۱۰</span></span>
-                <span className="col-span-4 flex flex-wrap gap-2 md:col-span-1"><Badge tone={p.reg === "اعلام نشده" ? "muted" : "success"}>{p.reg}</Badge></span>
-                <span className="col-span-4 md:col-span-1"><Badge tone="muted"><Globe2 className="size-3" />{p.iran}</Badge></span>
-                <a href="#" className="col-span-4 text-sm font-semibold text-primary hover:underline md:col-span-1">مشاهدهٔ بررسی</a>
-              </li>
-            ))}
+            {byKind(topKind).slice(0, 5).map((p, idx) => <PlatformRow key={p.slug} p={p} rank={idx + 1} />)}
           </ol>
+          <Link to="/best" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary">همهٔ فهرست‌ها<ChevronLeft className="size-4" /></Link>
           <p className="mt-2 text-xs text-muted-foreground">داده‌های نمونه برای پیش‌نمایش طراحی.</p>
         </section>
 
@@ -180,7 +115,7 @@ function Index() {
               </div>
             ))}
           </div>
-          <a href="#" className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">روش ارزیابی کامل<ChevronLeft className="size-4" /></a>
+          <Link to="/methodology" className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">روش ارزیابی کامل<ChevronLeft className="size-4" /></Link>
         </section>
 
         {/* S5 Five steps */}
@@ -200,11 +135,11 @@ function Index() {
         <section className="mt-16">
           <h2 className="text-2xl font-extrabold text-brand-deep md:text-3xl">مقایسه‌های پرطرفدار</h2>
           <div className="mt-6 flex snap-x gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
-            {[["آلفا مارکتس", "نوا اف‌اکس"], ["بیت‌پل", "کوین‌گیت"], ["فاندد پرو", "تریدر کپیتال"], ["مریدین", "اطلس ترید"]].map(([a, b]) => (
-              <a key={a} href="#" className="min-w-[70%] snap-start rounded-xl border border-border bg-card p-5 hover:border-primary sm:min-w-[40%] md:min-w-0">
+            {[["آلفا مارکتس", "نوا اف‌اکس", "alpha-markets,nova-fx"], ["بیت‌پل", "کوین‌گیت", "bitpal,coingate"], ["فاندد پرو", "تریدر کپیتال", "funded-pro,trader-capital"], ["مریدین", "اطلس ترید", "meridian,atlas-trade"]].map(([a, b, ids]) => (
+              <Link key={a} to="/compare" search={{ p: ids }} className="min-w-[70%] snap-start rounded-xl border border-border bg-card p-5 hover:border-primary sm:min-w-[40%] md:min-w-0">
                 <div className="flex items-center justify-between font-bold"><span>{a}</span><span className="rounded-md bg-tint px-2 py-0.5 text-xs text-primary">در برابر</span><span>{b}</span></div>
                 <p className="mt-3 text-sm text-muted-foreground">هزینه، مجوز و دسترسی در یک جدول</p>
-              </a>
+              </Link>
             ))}
           </div>
         </section>
@@ -213,19 +148,15 @@ function Index() {
         <section className="mt-16">
           <div className="flex items-end justify-between">
             <h2 className="text-2xl font-extrabold text-brand-deep md:text-3xl">آموزش</h2>
-            <a href="#" className="text-sm font-semibold text-primary">واژه‌نامه</a>
+            <Link to="/learn" className="text-sm font-semibold text-primary">واژه‌نامه</Link>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {[
-              { c: "مبتدی", t: "اسپرد چیست و چرا مهم است؟", m: "۶ دقیقه" },
-              { c: "امنیت", t: "چطور مجوز یک بروکر را استعلام کنیم؟", m: "۸ دقیقه" },
-              { c: "پراپ", t: "قوانین چالش پراپ‌فرم‌ها به زبان ساده", m: "۷ دقیقه" },
-            ].map((a) => (
-              <a key={a.t} href="#" className="rounded-xl border border-border bg-card p-5 hover:border-primary">
-                <span className="text-xs font-semibold text-success">{a.c}</span>
-                <h3 className="mt-2 font-bold leading-7">{a.t}</h3>
-                <p className="mt-3 text-xs text-muted-foreground">زمان مطالعه: {a.m}</p>
-              </a>
+            {ARTICLES.slice(0, 3).map((a) => (
+              <Link key={a.slug} to="/learn/$slug" params={{ slug: a.slug }} className="rounded-xl border border-border bg-card p-5 hover:border-primary">
+                <span className="text-xs font-semibold text-success">{a.cat}</span>
+                <h3 className="mt-2 font-bold leading-7">{a.title}</h3>
+                <p className="mt-3 text-xs text-muted-foreground">زمان مطالعه: {a.min} دقیقه</p>
+              </Link>
             ))}
           </div>
         </section>
@@ -251,35 +182,7 @@ function Index() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-brand-deep text-primary-foreground">
-        <div className="mx-auto max-w-[1200px] px-4 py-12">
-          <div className="flex gap-3 rounded-xl border border-primary-foreground/20 p-4 text-sm leading-7">
-            <Info className="mt-1 size-5 shrink-0" />
-            <p><strong>هشدار ریسک:</strong> معامله در بازارهای مالی با ریسک از دست رفتن سرمایه همراه است. محتوای نیک‌تراست توصیهٔ سرمایه‌گذاری نیست.</p>
-          </div>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
-            <div><img src={logoWhite.url} alt="نیک‌تراست" className="h-8 w-auto" /><p className="mt-3 text-sm text-primary-foreground/70">ارزیاب پلتفرم‌های مالی با اولویت اعتماد</p></div>
-            {[
-              ["پلتفرم‌ها", ["بروکرهای فارکس", "صرافی‌های ارز دیجیتال", "پراپ‌فرم‌ها"]],
-              ["ابزارها", ["مقایسهٔ پلتفرم‌ها", "بهترین‌ها", "پلتفرم مناسب من"]],
-              ["آموزش", ["مقالات", "واژه‌نامه", "اخبار"]],
-              ["نیک‌تراست", ["روش ارزیابی", "افشای همکاری", "تماس با ما"]],
-            ].map(([h, ls]) => (
-              <div key={h as string}><h3 className="font-bold">{h}</h3>
-                <ul className="mt-3 space-y-2 text-sm text-primary-foreground/70">{(ls as string[]).map((l) => <li key={l}><a href="#" className="hover:text-primary-foreground">{l}</a></li>)}</ul>
-              </div>
-            ))}
-          </div>
-          <p className="mt-10 border-t border-primary-foreground/15 pt-6 text-xs text-primary-foreground/60">© ۱۴۰۵ نیک‌تراست. همکاری تجاری بر امتیاز و ترتیب فهرست‌ها اثری ندارد.</p>
-        </div>
-      </footer>
     </div>
   );
 }
 
-function Badge({ tone, children }: { tone: "success" | "muted"; children: React.ReactNode }) {
-  return (
-    <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-medium ${tone === "success" ? "bg-success/10 text-success" : "bg-muted text-muted-foreground"}`}>{children}</span>
-  );
-}
