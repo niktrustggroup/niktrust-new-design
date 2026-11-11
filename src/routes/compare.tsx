@@ -4,7 +4,7 @@ import { KINDS, PLATFORMS, bySlug, byKind, fa, type Kind } from "@/lib/data";
 import { Page, Mark, Empty, Trust, meta } from "@/components/site/ui";
 
 export const Route = createFileRoute("/compare")({
-  validateSearch: (s: Record<string, unknown>): { p?: string } => ({ p: typeof s.p === "string" ? s.p : undefined }),
+  validateSearch: (s: Record<string, unknown>): { p?: string | undefined } => ({ p: typeof s["p"] === "string" ? s["p"] : undefined }),
   head: () => meta("مقایسهٔ پلتفرم‌ها", "۲ تا ۴ پلتفرم هم‌نوع را بر اساس مجوز، هزینه و دسترسی از ایران کنار هم مقایسه کنید."),
   component: Compare,
 });

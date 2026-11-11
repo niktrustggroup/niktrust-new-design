@@ -20,6 +20,7 @@ const MENUS: { title: string; intro: string; links: L[] }[] = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<number | null>(null);
+  const active = menu === null ? undefined : MENUS[menu];
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-card" onMouseLeave={() => setMenu(null)}>
       <div className="relative mx-auto flex h-16 max-w-[1200px] items-center gap-6 px-4">
@@ -35,11 +36,11 @@ export function Header() {
           <Link to="/compare" className="hidden rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 sm:inline-flex">پیدا کردن پلتفرم مناسب</Link>
           <button aria-label="منو" aria-expanded={open} onClick={() => setOpen(!open)} className="rounded-lg p-2 lg:hidden">{open ? <X className="size-5" /> : <Menu className="size-5" />}</button>
         </div>
-        {menu !== null && (
+        {active && (
           <div className="absolute inset-x-4 top-full mt-2 hidden grid-cols-12 overflow-hidden rounded-xl border border-border bg-card animate-in fade-in slide-in-from-top-1 lg:grid">
-            <div className="col-span-4 bg-tint p-6"><p className="font-bold text-brand-deep">{MENUS[menu].title}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{MENUS[menu].intro}</p></div>
+            <div className="col-span-4 bg-tint p-6"><p className="font-bold text-brand-deep">{active.title}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{active.intro}</p></div>
             <div className="col-span-8 grid grid-cols-2 gap-1 p-6">
-              {MENUS[menu].links.map((l) => (
+              {active.links.map((l) => (
                 <Link key={l.label} to={l.to as never} params={l.params as never} onClick={() => setMenu(null)} className="rounded-lg px-3 py-2 text-[15px] hover:bg-accent">{l.label}</Link>
               ))}
             </div>

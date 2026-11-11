@@ -4,7 +4,7 @@ import { PLATFORMS, ARTICLES, kindOf } from "@/lib/data";
 import { Page, Mark, Empty, meta } from "@/components/site/ui";
 
 export const Route = createFileRoute("/search")({
-  validateSearch: (s: Record<string, unknown>): { q?: string } => ({ q: typeof s.q === "string" ? s.q : undefined }),
+  validateSearch: (s: Record<string, unknown>): { q?: string | undefined } => ({ q: typeof s["q"] === "string" ? s["q"] : undefined }),
   head: () => meta("جستجو", "جستجو در پلتفرم‌ها و مقالات نیک‌تراست با نام فارسی یا لاتین."),
   component: Search,
 });

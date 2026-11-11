@@ -42,7 +42,7 @@ export const PLATFORMS: Platform[] = [
 ];
 export const byKind = (k: Kind) => PLATFORMS.filter((p) => p.kind === k).sort((a, b) => b.score - a.score);
 export const bySlug = (s: string) => PLATFORMS.find((p) => p.slug === s);
-export const fa = (n: number | string) => (typeof n === "number" ? n.toLocaleString("fa-IR") : n.replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[+d]));
+export const fa = (n: number | string) => (typeof n === "number" ? n.toLocaleString("fa-IR") : n.replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[+d] ?? d));
 
 export const ARTICLES = [
   { slug: "what-is-spread", cat: "مبتدی", title: "اسپرد چیست و چرا مهم است؟", min: "۶", excerpt: "اسپرد تفاوت قیمت خرید و فروش است و مستقیماً هزینهٔ هر معامله را تعیین می‌کند." },
